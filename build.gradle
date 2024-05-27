@@ -1,0 +1,147 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10"
+        classpath 'com.agileorbit:schwartz:1.0.1'
+    }
+}
+
+version "0.1"
+group "com.tecnofind"
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"war"
+apply plugin:"org.grails.grails-web"
+apply plugin:"com.bertramlabs.asset-pipeline"
+apply plugin:"org.grails.grails-gsp"
+apply plugin:"java"
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+    mavenCentral()
+	jcenter()
+	maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+	maven { url "https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16" }
+	maven { url "https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on" }
+	maven { url "https://mvnrepository.com/artifact/org.apache.axis/axis" }
+	maven { url "https://mvnrepository.com/artifact/com.sun.org.apache/jaxp-ri" }
+	maven { url "https://mvnrepository.com/artifact/javax.xml/jaxrpc-api" }
+	maven { url "https://mvnrepository.com/artifact/com.sun.jini/sun-util" }
+	maven { url "https://mvnrepository.com/artifact/com.google.guava/guava" }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.springframework:spring-test"
+    compile "org.grails:grails-core"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-web-boot"
+    compile "org.grails:grails-logging"
+    compile "org.grails:grails-plugin-rest"
+    compile "org.grails:grails-plugin-databinding"
+    compile "org.grails:grails-plugin-i18n"
+    compile "org.grails:grails-plugin-services"
+    compile "org.grails:grails-plugin-url-mappings"
+    compile "org.grails:grails-plugin-interceptors"
+    compile "org.grails.plugins:cache"
+    compile "org.grails.plugins:async"
+    compile "org.grails.plugins:scaffolding"
+    compile "org.grails.plugins:events"
+    compile "org.grails.plugins:hibernate5"
+    compile "org.hibernate:hibernate-core:5.1.16.Final"
+    compile "org.grails.plugins:gsp"
+    console "org.grails:grails-console"
+    profile "org.grails.profiles:web"
+    runtime "org.glassfish.web:el-impl:2.1.2-b03"
+    runtime "com.h2database:h2"
+    runtime "org.apache.tomcat:tomcat-jdbc"
+    runtime "com.bertramlabs.plugins:asset-pipeline-grails:3.0.10"
+    testCompile "org.grails:grails-gorm-testing-support"
+    testCompile "org.grails.plugins:geb"
+    testCompile "org.grails:grails-web-testing-support"
+    testCompile "org.grails.plugins:geb:1.1.2"
+    //testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
+    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+    //testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:2.47.1"
+	compile 'org.grails.plugins:postgresql-extensions:4.8.0'
+	compile 'org.postgresql:postgresql:9.4.1211.jre7'
+	compile "org.jadira.usertype:usertype.core:5.0.0.GA"
+	compile "org.hibernate:hibernate-ehcache:5.1.16.Final"
+	compile 'org.grails.plugins:joda-time:2.1.0'
+	compile 'org.grails.plugins:spring-security-core:3.2.3'
+   // compile 'org.grails.plugins:spring-security-rest:3.0.0.RC1' //new
+    compile "org.grails.plugins:spring-security-rest:2.0.0.M2"
+	compile 'org.grails.plugins:spring-security-ui:4.0.0.M1'
+	compile 'org.grails.plugins:mail:2.0.0'
+	compile 'org.apache.poi:poi:3.9'
+	compile 'org.apache.poi:poi-ooxml:3.9'
+	compile 'org.bouncycastle:bcprov-jdk15on:1.64'
+	compile 'org.bouncycastle:bcpkix-jdk15on:1.64'
+	compile 'com.sun.org.apache:jaxp-ri:1.4'
+	compile 'javax.xml:jaxrpc-api:1.1'
+	compile 'com.github.groovy-wslite:groovy-wslite:1.1.2'
+	compile 'com.sun.jini:sun-util:2.1'
+	compile 'com.google.guava:guava:r05'
+    compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+    //compile 'org.grails.plugins:http-builder-helper:1.1.0'
+    //compile "com.budjb:http-requests-jersey2:2.0.3"
+    //compile "com.budjb:http-requests-jackson:2.0.3"
+    compile "com.mercadopago:dx-java:1.0.33"
+    compile 'com.agileorbit:schwartz:1.0.1'
+    compile "org.grails.plugins:jasper-reports:3.2.0"
+    compile ('com.google.api-client:google-api-client:1.23.1'){
+        exclude group:'com.google.guava'
+    }
+   // compile 'com.google.apis:google-api-services-people:v1-rev20200730-1.30.10'
+    compile 'com.google.apis:google-api-services-people:v1-rev277-1.23.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    compile group: 'com.google.oauth-client', name: 'google-oauth-client-java6', version: '1.31.0'
+    compile group: 'com.google.http-client', name: 'google-http-client-jackson2', version: '1.25.0'
+    compile 'com.google.guava:guava:23.0'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    //compile 'org.seleniumhq.selenium:selenium-support:3.14.0'
+    //compile 'org.seleniumhq.selenium:selenium-chrome-driver:3.14.0'
+    compile "org.seleniumhq.selenium:htmlunit-driver:2.35.1"
+    compile "org.seleniumhq.selenium:selenium-remote-driver:3.141.59"
+    compile "org.seleniumhq.selenium:selenium-api:3.141.59"
+    compile "org.seleniumhq.selenium:selenium-support:3.141.59"
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:3.141.59"
+    compile "org.seleniumhq.selenium:selenium-firefox-driver:3.141.59"
+    compile 'com.google.zxing:zxing-parent:3.5.0'
+    compile 'com.google.zxing:core:3.5.0'
+    compile 'com.google.zxing:javase:3.5.0'
+    implementation 'org.apache.pdfbox:pdfbox:2.0.24'
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.24'
+    implementation 'net.coobird:thumbnailator:0.4.14'
+
+}
+
+bootRun {
+    //jvmArgs=["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=32323"]
+	jvmArgs('-Dspring.output.ansi.enabled=always')
+    addResources = true
+    String springProfilesActive = 'spring.profiles.active'
+    systemProperty springProfilesActive, System.getProperty(springProfilesActive)
+}
+
+tasks.withType(Test) {
+    systemProperty "geb.env", System.getProperty('geb.env')
+    systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
+    systemProperty "webdriver.chrome.driver", System.getProperty('webdriver.chrome.driver')
+    systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
+}
+
+assets {
+    minifyJs = false
+    minifyCss = false
+}

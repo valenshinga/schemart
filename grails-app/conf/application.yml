@@ -1,0 +1,192 @@
+---
+grails:
+    profile: web
+    codegen:
+        defaultPackage: tecnofind
+    gorm:
+        autowire: true
+        multiTenancy:
+            mode: DISCRIMINATOR
+            tenantResolverClass: com.tecnofind.CurrentUserTenantResolver
+        reactor:
+            # Whether to translate GORM events into Reactor events
+            # Disabled by default for performance reasons
+            events: false
+        default.mapping: {
+            id generator: 'org.hibernate.id.enhanced.SequenceStyleGenerator', params: [prefer_sequence_per_entity: true]
+        }
+    plugin:
+        springsecurity:
+          ui:
+            encodePassword: false
+            password:
+              minLength: 8
+              maxLength: 64
+              validationRegex: '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
+            register:
+              defaultRoleNames: ['ROLE_USER']
+              emailFrom: '"Calim" <notificaciones@calim.com.ar>'
+            forgotPassword.emailFrom: '"Calim" <notificaciones@calim.com.ar>'
+          successHandler:
+            defaultTargetUrl: "/start/index"
+            alwaysUseDefault: false
+            targetUrlParameter: 'spring-security-redirect'
+            ajaxSuccessUrl: '/login/ajaxSuccess'
+            successHandler.useReferer: false
+    cors:
+        enabled: true
+    server:
+        url:
+            timeout: 300000
+        proxy:
+            timeout: 300000
+info:
+    app:
+        name: '@info.app.name@'
+        version: '@info.app.version@'
+        grailsVersion: '@info.app.grailsVersion@'
+spring:
+    main:
+        banner-mode: "off"
+    groovy:
+        template:
+            check-template-location: false
+
+# Spring Actuator Endpoints are Disabled by Default
+endpoints:
+    enabled: false
+    jmx:
+        enabled: true
+
+---
+grails:
+    mime:
+        disable:
+            accept:
+                header:
+                    userAgents:
+                        - Gecko
+                        - WebKit
+                        - Presto
+                        - Trident
+        types:
+            all: '*/*'
+            atom: application/atom+xml
+            css: text/css
+            csv: text/csv
+            form: application/x-www-form-urlencoded
+            html:
+              - text/html
+              - application/xhtml+xml
+            js: text/javascript
+            json:
+              - application/json
+              - text/json
+            multipartForm: multipart/form-data
+            pdf: application/pdf
+            rss: application/rss+xml
+            text: text/plain
+            hal:
+              - application/hal+json
+              - application/hal+xml
+            xml:
+              - text/xml
+              - application/xml
+    urlmapping:
+        cache:
+            maxsize: 1000
+    controllers:
+        defaultScope: singleton
+        upload:
+            maxFileSize: 52428800
+            maxRequestSize: 52428800
+    converters:
+        encoding: UTF-8
+    views:
+        default:
+            codec: html
+        gsp:
+            encoding: UTF-8
+            htmlcodec: xml
+            codecs:
+                expression: html
+                scriptlets: html
+                taglib: none
+                staticparts: none
+endpoints:
+    jmx:
+        unique-names: true
+
+---
+hibernate:
+    cache:
+        queries: false
+        use_second_level_cache: false
+        use_query_cache: false
+    dialect: net.kaleidos.hibernate.PostgresqlExtensionsDialect
+dataSource:
+    pooled: true
+    jmxExport: true
+    #driverClassName: org.h2.Driver
+    #username: sa
+    #password: ''
+    driverClassName: org.postgresql.Driver
+    username: tecnofind
+    password: inmobiliaria2024
+    url: "jdbc:postgresql://localhost:5432/tecnofind"
+
+environments:
+    development:
+        server:
+            port: 8081
+        carpetaArchivos: "Documentos/tecnofind/archivosTecnofindDesarrollo"
+        dataSource:
+            dbCreate: update
+            driverClassName: org.postgresql.Driver
+            username: tecnofind
+            password: inmobiliaria2024
+            url: "jdbc:postgresql://localhost:5432/tecnofind"
+        grails:
+            # serverURL: "http://192.168.0.102:8080"
+            serverURL: "http://localhost:8081"
+    test:
+        server:
+            port: 8081
+        carpetaArchivos: "Documentos/tecnofind/archivosTecnofindDesarrollo"
+        dataSource:
+            dbCreate: update
+            driverClassName: org.postgresql.Driver
+            username: tecnofind
+            password: inmobiliaria2024
+            url: "jdbc:postgresql://localhost:5432/tecnofind"
+        grails:
+            # serverURL: "http://192.168.0.102:8080"
+            serverURL: "http://localhost:8081"
+    production:
+        carpetaArchivos: "tecnofindUploads"
+        dataSource:
+            dbCreate: update
+            driverClassName: org.postgresql.Driver
+            username: tecnofind
+            password: inmobiliaria2024
+            url: "jdbc:postgresql://localhost:5432/tecnofind"
+            properties:
+                jmxEnabled: true
+                initialSize: 5
+                maxActive: 50
+                minIdle: 5
+                maxIdle: 25
+                maxWait: 10000
+                maxAge: 600000
+                timeBetweenEvictionRunsMillis: 5000
+                minEvictableIdleTimeMillis: 60000
+                validationQuery: SELECT 1
+                validationQueryTimeout: 3
+                validationInterval: 15000
+                testOnBorrow: true
+                testWhileIdle: true
+                testOnReturn: false
+                jdbcInterceptors: ConnectionState
+                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+        grails:
+            serverURL: "https://tecnofind.es"
