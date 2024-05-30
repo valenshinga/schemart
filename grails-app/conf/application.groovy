@@ -9,9 +9,9 @@ jodatime.format.org.joda.time.LocalDate='dd/MM/yyyy'
 jodatime.format.org.joda.time.LocalDateTime='dd/MM/yyyy HH:mm:ss'
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.tecnofind.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.tecnofind.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.tecnofind.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.schemart.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.schemart.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.schemart.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -53,18 +53,18 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 grails.plugin.springsecurity.rest.token.validation.enableAnonymousAccess = false
 
-grails {
-	mail {
-		host = "smtp.mailgun.org"
-		port = 587
-		username = "notificaciones@tecnofind.es"
-		password = "2602528f8462dce5d9d4416896ab7570-4c955d28-325030b4" // API KEY 82f85cc59b7b2bf5d701871d16fa2c1c-4c955d28-c37ef29d
-		props = ["mail.smtp.auth":"true",
-				"mail.smtp.socketFactory.port":"465",
-				"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-				"mail.smtp.socketFactory.fallback":"false"]
-	}
-}
+// grails {
+// 	mail {
+// 		host = "smtp.mailgun.org"
+// 		port = 587
+// 		username = ""
+// 		password = 
+// 		props = ["mail.smtp.auth":"true",
+// 				"mail.smtp.socketFactory.port":"465",
+// 				"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+// 				"mail.smtp.socketFactory.fallback":"false"]
+// 	}
+// }
 
 grails {
 	plugin {
@@ -81,16 +81,6 @@ grails {
 							secret = 'foobar123'*4 
 							expiration = 2678400
 						}
-					}
-				}
-				oauth {
-					frontendCallbackUrl = { String tokenValue -> "https://app.calim.com.ar/auth/success?token=${tokenValue}" } 
-					google {
-						client = org.pac4j.oauth.client.Google2Client 
-						key = '93928074758-p687srmuti88m9ud6k16ngaeenglac5n.apps.googleusercontent.com' 
-						secret = 'p3IF_jei8YIv2FF7nYjqPBTM' 
-						scope = org.pac4j.oauth.client.Google2Client.Google2Scope.EMAIL_AND_PROFILE 
-						defaultRoles = ['ROLE_CUENTA'] 
 					}
 				}
 			}

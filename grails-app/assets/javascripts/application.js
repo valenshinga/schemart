@@ -61,4 +61,4 @@
 //= require date-eu/js/date-eu
 //= require card-js/card-js.min
 //= require fixedcolumns/js/dataTables.fixedColumns.min
-//= require tecnofind
+//= require schemart

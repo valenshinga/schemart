@@ -12,7 +12,7 @@ buildscript {
 }
 
 version "0.1"
-group "com.tecnofind"
+group "com.schemart"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -90,22 +90,13 @@ dependencies {
 	compile 'javax.xml:jaxrpc-api:1.1'
 	compile 'com.github.groovy-wslite:groovy-wslite:1.1.2'
 	compile 'com.sun.jini:sun-util:2.1'
-	compile 'com.google.guava:guava:r05'
     compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
     //compile 'org.grails.plugins:http-builder-helper:1.1.0'
     //compile "com.budjb:http-requests-jersey2:2.0.3"
     //compile "com.budjb:http-requests-jackson:2.0.3"
-    compile "com.mercadopago:dx-java:1.0.33"
     compile 'com.agileorbit:schwartz:1.0.1'
     compile "org.grails.plugins:jasper-reports:3.2.0"
-    compile ('com.google.api-client:google-api-client:1.23.1'){
-        exclude group:'com.google.guava'
-    }
    // compile 'com.google.apis:google-api-services-people:v1-rev20200730-1.30.10'
-    compile 'com.google.apis:google-api-services-people:v1-rev277-1.23.0'
-    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
-    compile group: 'com.google.oauth-client', name: 'google-oauth-client-java6', version: '1.31.0'
-    compile group: 'com.google.http-client', name: 'google-http-client-jackson2', version: '1.25.0'
     compile 'com.google.guava:guava:23.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
@@ -117,9 +108,6 @@ dependencies {
     compile "org.seleniumhq.selenium:selenium-support:3.141.59"
     compile "org.seleniumhq.selenium:selenium-chrome-driver:3.141.59"
     compile "org.seleniumhq.selenium:selenium-firefox-driver:3.141.59"
-    compile 'com.google.zxing:zxing-parent:3.5.0'
-    compile 'com.google.zxing:core:3.5.0'
-    compile 'com.google.zxing:javase:3.5.0'
     implementation 'org.apache.pdfbox:pdfbox:2.0.24'
     compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.24'
     implementation 'net.coobird:thumbnailator:0.4.14'

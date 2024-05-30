@@ -2,12 +2,9 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: tecnofind
+        defaultPackage: schemart
     gorm:
         autowire: true
-        multiTenancy:
-            mode: DISCRIMINATOR
-            tenantResolverClass: com.tecnofind.CurrentUserTenantResolver
         reactor:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
@@ -17,22 +14,22 @@ grails:
         }
     plugin:
         springsecurity:
-          ui:
-            encodePassword: false
-            password:
-              minLength: 8
-              maxLength: 64
-              validationRegex: '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
-            register:
-              defaultRoleNames: ['ROLE_USER']
-              emailFrom: '"Calim" <notificaciones@calim.com.ar>'
-            forgotPassword.emailFrom: '"Calim" <notificaciones@calim.com.ar>'
-          successHandler:
-            defaultTargetUrl: "/start/index"
-            alwaysUseDefault: false
-            targetUrlParameter: 'spring-security-redirect'
-            ajaxSuccessUrl: '/login/ajaxSuccess'
-            successHandler.useReferer: false
+            ui:
+                encodePassword: false
+                password:
+                    minLength: 8
+                    maxLength: 64
+                    validationRegex: '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
+                register:
+                    defaultRoleNames: ['ROLE_USER']
+                #     emailFrom: '"Calim" <notificaciones@calim.com.ar>'
+                # forgotPassword.emailFrom: '"Calim" <notificaciones@calim.com.ar>'
+            successHandler:
+                defaultTargetUrl: "/start/index"
+                alwaysUseDefault: false
+                targetUrlParameter: 'spring-security-redirect'
+                ajaxSuccessUrl: '/login/ajaxSuccess'
+                successHandler.useReferer: false
     cors:
         enabled: true
     server:
@@ -76,22 +73,22 @@ grails:
             csv: text/csv
             form: application/x-www-form-urlencoded
             html:
-              - text/html
-              - application/xhtml+xml
+                - text/html
+                - application/xhtml+xml
             js: text/javascript
             json:
-              - application/json
-              - text/json
+                - application/json
+                - text/json
             multipartForm: multipart/form-data
             pdf: application/pdf
             rss: application/rss+xml
             text: text/plain
             hal:
-              - application/hal+json
-              - application/hal+xml
+                - application/hal+json
+                - application/hal+xml
             xml:
-              - text/xml
-              - application/xml
+                - text/xml
+                - application/xml
     urlmapping:
         cache:
             maxsize: 1000
@@ -131,45 +128,45 @@ dataSource:
     #username: sa
     #password: ''
     driverClassName: org.postgresql.Driver
-    username: tecnofind
-    password: inmobiliaria2024
-    url: "jdbc:postgresql://localhost:5432/tecnofind"
+    username: schemart
+    password: schemart2024
+    url: "jdbc:postgresql://localhost:5432/schemart"
 
 environments:
     development:
         server:
             port: 8081
-        carpetaArchivos: "Documentos/tecnofind/archivosTecnofindDesarrollo"
+        carpetaArchivos: "Documentos/schemart/archivosSchemartDesarrollo"
         dataSource:
             dbCreate: update
             driverClassName: org.postgresql.Driver
-            username: tecnofind
-            password: inmobiliaria2024
-            url: "jdbc:postgresql://localhost:5432/tecnofind"
+            username: schemart
+            password: schemart2024
+            url: "jdbc:postgresql://localhost:5432/schemart"
         grails:
             # serverURL: "http://192.168.0.102:8080"
             serverURL: "http://localhost:8081"
     test:
         server:
             port: 8081
-        carpetaArchivos: "Documentos/tecnofind/archivosTecnofindDesarrollo"
+        carpetaArchivos: "Documentos/schemart/archivosSchemartDesarrollo"
         dataSource:
             dbCreate: update
             driverClassName: org.postgresql.Driver
-            username: tecnofind
-            password: inmobiliaria2024
-            url: "jdbc:postgresql://localhost:5432/tecnofind"
+            username: schemart
+            password: schemart2024
+            url: "jdbc:postgresql://localhost:5432/schemart"
         grails:
             # serverURL: "http://192.168.0.102:8080"
             serverURL: "http://localhost:8081"
-    production:
-        carpetaArchivos: "tecnofindUploads"
+    producción:
+        carpetaArchivos: ""
         dataSource:
             dbCreate: update
             driverClassName: org.postgresql.Driver
-            username: tecnofind
-            password: inmobiliaria2024
-            url: "jdbc:postgresql://localhost:5432/tecnofind"
+            username: schemart
+            password: schemart2024
+            url: "jdbc:postgresql://localhost:5432/schemart"
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -189,4 +186,4 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
         grails:
-            serverURL: "https://tecnofind.es"
+            # serverURL: ""

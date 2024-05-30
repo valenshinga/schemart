@@ -102,12 +102,12 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .btn-servicio:hover {
-    color: #f29705 !important;
+    color: #084c61 !important;
     cursor: pointer;
 }
 
 .btn-servicio-active {
-    color: #f29705 !important;
+    color: #084c61 !important;
     display: inline-block;
     width: 11vw;
     margin: 19px 0px;
@@ -118,12 +118,12 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .btn-servicio-active span {
-    border-bottom: 1px solid #f29705;
+    border-bottom: 1px solid #084c61;
     padding: 0px 5px 5px 5px;
 }
 
 .borde-derecho {
-    border-right: 1px solid #f29705;
+    border-right: 1px solid #084c61;
 }
 
 .titulo-saldo {
@@ -142,14 +142,14 @@ table.dataTable.table-simple td.dataTables_empty {
 
 .boton-accion-inverso {
     background: transparent;
-    border-color: #f29705;
-    color: #f29705;
+    border-color: #084c61;
+    color: #084c61;
 }
 
 .boton-accion-inverso:hover {
-    background: #f29705;
+    background: #084c61;
     color: #fff;
-    border-color: #f29705;
+    border-color: #084c61;
 }
 
 .boton-soporte-2 {
@@ -196,13 +196,13 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .boton-check-verde {
-    color: #f29f0590;
+    color: #0C7797;
     font-weight: bold;
     font-size: 22px;
 }
 
 .boton-check-azul {
-    color: #f29705;
+    color: #084c61;
     font-weight: bold;
     font-size: 22px;
 }
@@ -275,7 +275,7 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .nav-link.nav-link-negro.active {
-    color: #f29705 !important;
+    color: #084c61 !important;
     font-weight: 600;
     background: #f6f6f6;
 }
@@ -289,7 +289,7 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .slide.slide-negro {
-    background-color: #f29705 !important;
+    background-color: #084c61 !important;
 }
 
 .input-group-addon.negro {
@@ -320,11 +320,11 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .bg-color-calim-1 {
-    background-color: #f29705;
+    background-color: #084c61;
 }
 
 .bg-color-calim-2 {
-    background-color: #f29f0590;
+    background-color: #0C7797;
 }
 
 .bg-color-calim-3 {
@@ -348,11 +348,11 @@ table.dataTable.table-simple td.dataTables_empty {
 }
 
 .color-calim-1 {
-    color: #f29705;
+    color: #084c61;
 }
 
 .color-calim-2 {
-    color: #f29f0590;
+    color: #0C7797;
 }
 
 .color-calim-3 {
@@ -417,20 +417,20 @@ table.dataTable.table-simple td.dataTables_empty {
 
 span.color-calim-1,
 div.color-calim-1 {
-    color: #f29705;
+    color: #084c61;
 }
 
 div.progress-bar.color-calim-1 {
-    background-color: #f29705;
+    background-color: #084c61;
 }
 
 span.color-calim-2,
 div.color-calim-2 {
-    color: #f29f0590;
+    color: #0C7797;
 }
 
 div.progress-bar.color-calim-2 {
-    background-color: #f29f0590;
+    background-color: #0C7797;
 }
 
 span.color-calim-3,
@@ -568,7 +568,7 @@ div.progress-bar.color-calim-7 {
 }
 
 .selected {
-    background-color: #f29705 !important;
+    background-color: #084c61 !important;
 }
 
 .selected a {
@@ -624,7 +624,7 @@ div.progress-bar.color-calim-7 {
     position: absolute;
     left: -38px;
     background-color: #f2970520;
-    color: #f29705;
+    color: #084c61;
     border-radius: 50%;
     height: 31px;
     width: 31px;
@@ -637,7 +637,7 @@ div.progress-bar.color-calim-7 {
     position: absolute;
     left: -65px;
     background-color: #f2970520;
-    color: #f29705;
+    color: #084c61;
     border-radius: 50%;
     height: 51px;
     width: 51px;
@@ -657,7 +657,7 @@ div.dt-buttons {
 }
 
 a.dt-button {
-    background-color: #f29705;
+    background-color: #084c61;
     color: #fff;
     border: 0;
     font-size: 19px;
@@ -666,12 +666,12 @@ a.dt-button {
 }
 
 .btn-outline-primary {
-    color: #f29705;
+    color: #084c61;
 }
 
 .dt-button:hover {
     background-color: #fff !important;
-    color: #f29705 !important;
+    color: #084c61 !important;
     padding: 4px 10px !important;
     border-radius: 5px !important;
 }
@@ -707,7 +707,7 @@ a.dt-button {
 .icono-archivo {
     width: auto;
     height: auto;
-    color: #f29705;
+    color: #084c61;
     font-size: 20px !important;
     padding: 5px 7px;
     border-radius: 20px;
@@ -732,7 +732,7 @@ a.dt-button {
 }
 
 .icono-verde {
-    color: #f29f0590;
+    color: #0C7797;
     font-size: 100px !important;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -818,7 +818,7 @@ a.dt-button {
 }
 
 a h4 {
-    color: #f29705 !important;
+    color: #084c61 !important;
 }
 
 .form-switch {
@@ -878,7 +878,7 @@ a h4 {
 }
 
 .form-switch input:checked+i {
-    background-color: #f29705;
+    background-color: #084c61;
 }
 
 .form-switch input:checked+i::before {
