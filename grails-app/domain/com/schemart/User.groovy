@@ -1,8 +1,7 @@
-package com.tecnofind
+package com.schemart
 
-import com.tecnofind.Role
-import com.tecnofind.UserRole
-import com.tecnofind.oficina.Oficina
+import com.schemart.Role
+import com.schemart.UserRole
 
 import grails.compiler.GrailsCompileStatic
 import groovy.transform.EqualsAndHashCode
@@ -26,15 +25,10 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	Integer userTenantId = 1
-
-	static belongsTo = [oficina: Oficina]
-
 	static constraints = {
 		username blank: false, unique: true, email:true
 		password blank: false
 		nombre blank: false
-		oficina nullable: true
 	}
 	
 	static mapping = {
