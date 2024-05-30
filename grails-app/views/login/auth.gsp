@@ -8,7 +8,7 @@
     <!-- End Google Tag Manager -->
 
     <title>
-        <g:message code='tecnofind.title' default='Tecnofind' />
+        <g:message code='schemart.title' default='schemart' />
     </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,13 +33,6 @@
 </head>
 
 <body class="fix-menu">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPFKM22" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-
-
     <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
         <!-- Container-fluid starts -->
         <div class="container">
@@ -50,7 +43,7 @@
                         <form class="md-float-material" action='${postUrl}' method='POST' id="loginForm"
                             name="loginForm" autocomplete='off'>
                             <div class="text-center">
-                                <asset:image style="max-width: 60%;" src="auth/logo-dark.png" />
+                                <asset:image style="max-width: 100%;" src="auth/schemartLogo2.png" />
                             </div>
                             <div class="auth-box">
                                 <div class="input-group">
@@ -79,20 +72,12 @@
                                         <strong>¡Verifique la cuenta en su mail!</strong>
                                     </div>
                                 </g:if>
-                                <g:if test='${ipBlocked!=null}'>
-                                    <div class="alert alert-danger background-danger" style="margin-top: 15px;">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <i class="icofont icofont-close-line-circled text-white"></i>
-                                        </button>
-                                        <strong>¡Solo puedes entrar desde tu oficina!</strong>
-                                    </div>
-                                </g:if>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button type="button"
                                             class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
                                             onclick="document.forms.loginForm.submit();">
-                                            <g:message code='tecnofind.security.signin' default='Ingresar' />
+                                            Ingresar
                                         </button>
                                     </div>
                                 </div>

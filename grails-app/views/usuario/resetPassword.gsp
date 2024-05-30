@@ -3,7 +3,7 @@
 
 <head>
 	<title>
-		<g:message code='tecnofind.title' default='Tecnofind' />
+		Schemart
 	</title>
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -33,7 +33,7 @@
 					<div class="login-card auth-body mr-auto ml-auto">
 						<g:form class="md-float-material" controller="usuario" action="editPassword">
 							<div class="text-center">
-								<asset:image style="max-width: 60%;" src="auth/logo-dark.png" />
+								<asset:image style="max-width: 60%;" src="/grails-app/assets/images/auth/schemartLogo2.png" />
 							</div>
 							<div class="auth-box">
 								<div style="padding-left: 0; padding-right: 0;">

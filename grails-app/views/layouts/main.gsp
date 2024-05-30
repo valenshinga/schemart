@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-<%@ page import="com.tecnofind.User" %>
-  <%@ page import="com.tecnofind.ItemMenu" %>
-    <%@ page import="com.tecnofind.Role" %>
+<%@ page import="com.schemart.User" %>
+  <%@ page import="com.schemart.ItemMenu" %>
+    <%@ page import="com.schemart.Role" %>
       <g:set var="userLogged" value="${User.get(session.SPRING_SECURITY_CONTEXT?.authentication?.principal?.id)}" />
 
       <head>
-        <title>Tecnofind</title>
+        <title>Schemart</title>
         <!-- Meta -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -116,7 +116,7 @@
             text-align: center;
             line-height: 0.25;
             padding: 9px 4px;
-            background-color: #f29705;
+            background-color: #084C61;
             border-radius: 50%;
             transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
           }
@@ -134,7 +134,7 @@
             top: -28px;
             right: 4px;
             left: auto;
-            background-color: #f29f0590;
+            background-color: #0C7797;
           }
 
           #button-4 .checkbox:checked+.knobs:before {
@@ -158,10 +158,6 @@
       </head>
 
       <body>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPFKM22" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
 
         <g:hiddenField id="flashMessage" name="flashMessage" value="${flash.message}" />
         <g:hiddenField id="flashError" name="flashError" value="${flash.error}" />
@@ -214,15 +210,9 @@
             <nav class="navbar header-navbar pcoded-header">
               <div class="navbar-wrapper">
                 <div class="navbar-logo">
-                  <a class="mobile-menu" id="mobile-collapse" href="#">
-                    <i class="ti-menu"></i>
-                  </a>
-                  <a class="mobile-search morphsearch-search" href="#">
-                    <i class="ti-search"></i>
-                  </a>
                   <g:link controller="start" action="index">
-                    <img class="img-fluid" src="${resource(dir: 'assets/guru/assets/images', file: 'logo-dark.png')}"
-                      alt="Theme-Logo" style="height: 50px" />
+                    <!-- <img class="img-fluid" src="${resource(dir: 'assets/guru/assets/images', file: 'logo-dark.png')}"
+                      alt="Theme-Logo" style="height: 50px" /> -->
                   </g:link>
                 </div>
 
@@ -236,7 +226,7 @@
 
                     <li>
                       <g:link controller="logout" action="index" class="ti-power-off"
-                        style="color: #f29705; font-size: 1.5em"></g:link>
+                        style="color: #084C61; font-size: 1.5em"></g:link>
                     </li>
                   </ul>
                 </div>

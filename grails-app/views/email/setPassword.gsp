@@ -25,7 +25,7 @@
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #f29705;
+            background-color: #084C61;
             color: #FFFFFF;
             font-size: 20px ;
             border-radius: 5px;
@@ -40,7 +40,7 @@
 
 <body>
     <div class="container"> 
-        <img style="max-width: 60%; margin-top: 15px;" src="https://tecnofind.es/assets/auth/logo-dark-cbaa484c32ef19745ff206da8627367e.png"/>
+        <img style="max-width: 60%; margin-top: 15px;" src="/grails-app/assets/images/auth/schemartLogo2.png"/>
         <p>Has creado una cuenta nueva. Por favor, haz clic en el siguiente enlace para establecer una
             nueva contraseña:</p>
         <a href="${raw(createLink(absolute: true, controller: 'usuario', action: 'resetPassword', params: [token: token, username: username]))}" class="button" style="color: #FFFFFF;">Click aquí para cambiar tu contraseña</a>
