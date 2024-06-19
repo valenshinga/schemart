@@ -9,24 +9,19 @@ import grails.plugin.springsecurity.ui.RegistrationCode
 
 @Secured(['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER', 'ROLE_DOCENTE'])
 class BusquedaController {
-
-    def index(){
-        render 'hola'
-    }
-
     def usuarioService
     def accessRulesService
     def notificacionService
     def springSecurityService
 
-    // def index() {
-    //     redirect (action: 'buscar')
-    // }
+    def index() {
+        redirect (action: 'buscar')
+    }
 
-    // def buscar(){
+    def buscar(){
 
-    // }
+    }
 
-    // def create() {  
-    // }
+    def create() {  
+    }
 }
