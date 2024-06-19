@@ -23,8 +23,9 @@ class Inicializacion {
         def roles = [
             ["authority": "ROLE_SUPER_ADMIN"],
             ["authority": "ROLE_ADMIN"],
-            ["authority": "ROLE_USER"],
-            ["authority": "ROLE_DOCENTE"]
+            ["authority": "ROLE_DOCENTE"],
+			["authority": "ROLE_DIRECCION"],
+			["authority": "ROLE_ADMINISTRACION"]
         ]
         roles.each { rol ->
             if(Role.findByAuthority(rol.authority)) return
