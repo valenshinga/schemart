@@ -2,21 +2,18 @@ package com.schemart.email
 
 import com.schemart.User
 import org.joda.time.LocalDateTime
-import com.schemart.User
 
 class Email {
 
-    User receptor
-    String emailReceptor
+    String emisor
+    String receptor
     String asunto
-    String view
-    Map<String, Object> parametros
+    String mensaje
 
     static constraints = {
-        receptor nullable: true
-        emailReceptor nullable: false, blank: false
+        receptor nullable: false
+        emisor nullable: false
         asunto nullable: false
-        view nullable: true
-        parametros nullable: true
+        mensaje nullable: false
     }
 } 

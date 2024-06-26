@@ -47,4 +47,5 @@
 *= require fixedcolumns/css/fixedColumns.bootstrap.min
 *= require style
 *= require schemartStyle
+*= require fullcalendar/css/fullcalendar.css
 */

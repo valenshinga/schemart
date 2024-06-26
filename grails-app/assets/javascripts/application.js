@@ -62,3 +62,4 @@
 //= require card-js/card-js.min
 //= require fixedcolumns/js/dataTables.fixedColumns.min
 //= require schemart
+//= require fullcalendar/js/fullcalendar.min.js
