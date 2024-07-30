@@ -210,9 +210,15 @@
             <nav class="navbar header-navbar pcoded-header">
               <div class="navbar-wrapper">
                 <div class="navbar-logo">
+                  <a class="mobile-menu" id="mobile-collapse" href="#">
+                    <i class="ti-menu"></i>
+                  </a>
+                  <a class="mobile-search morphsearch-search" href="#">
+                    <i class="ti-search"></i>
+                  </a>
                   <g:link controller="start" action="index">
-                    <!-- <img class="img-fluid" src="${resource(dir: 'assets/guru/assets/images', file: 'logo-dark.png')}"
-                      alt="Theme-Logo" style="height: 50px" /> -->
+                    <img class="img-fluid" src="${resource(dir: 'assets/guru/assets/images', file: 'schemartLogo.png')}"
+                      alt="Theme-Logo" style="height: 50px" />
                   </g:link>
                 </div>
 

@@ -82,8 +82,8 @@ class Inicializacion {
 				hijos: [
 					[
 						nombre: 'Empleados',
-						// controller: '',
-						// action: '',
+						controller: 'empleado',
+						action: 'list',
 						roles: [admin, superAdmin, administracion]
 					],
 					[
