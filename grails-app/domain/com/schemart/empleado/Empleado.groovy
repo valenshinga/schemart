@@ -34,7 +34,5 @@ class Empleado {
         fechaNacimiento nullable: false
         cargo nullable: false
         estado nullable: false
-        idiomas nullable: true
-        disponibilidad nullable: true
 	}
 }
