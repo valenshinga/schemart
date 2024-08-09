@@ -10,6 +10,7 @@ import org.joda.time.Minutes
 import org.joda.time.Months
 import com.schemart.User
 import com.schemart.Role
+import com.schemart.empleado.Empleado
 
 class JsonInicializacion {
 	private static DecimalFormat decimalCurencyFormat = null;
@@ -63,6 +64,21 @@ class JsonInicializacion {
 			def returnArray = [:]
 			returnArray['id'] = it.id
 			returnArray['authority'] = it.authority.toString().replaceAll("\\[|\\]", "").replace('_', ' ').replace('ROLE','')
+			return returnArray
+		}
+
+		JSON.registerObjectMarshaller(Empleado){
+			def returnArray = [:]
+			returnArray['id'] = it.id
+			returnArray['nombreApellido'] = "${it.nombre} ${it.apellido}" 
+			returnArray['dni'] = it.dni 
+			returnArray['cuit'] = it.cuit
+			returnArray['domicilio'] = it.domicilio
+			returnArray['email'] = it.email
+			returnArray['telefono'] = it.telefono
+			returnArray['fechaNacimiento'] = it.fechaNacimiento.toString('dd/MM/YYYY')
+			returnArray['cargo'] = it.cargo 
+			returnArray['estado'] = it.estado.nombre
 			return returnArray
 		}
 	}
