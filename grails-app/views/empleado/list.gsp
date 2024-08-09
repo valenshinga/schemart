@@ -3,7 +3,6 @@
 
 <head>
     <meta name="layout" content="main" />
-
 </head>
 
 <body>
@@ -16,6 +15,12 @@
                     </div>
                 </div>
             </div>
+            <!-- <div class="input-group date">
+                <div class="input-group-addon" onclick="$('#fechaNacimiento').datepicker('show')">
+                    <span class="icofont icofont-ui-calendar"></span>
+                </div>
+                <input data-format="m" type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control-primary form-control" value="${command?.fechaNacimiento}" style="align-self: left;">
+            </div> -->
             <div class="page-body">
                 <div class="card">
                     <div class="card-block ">
@@ -25,22 +30,18 @@
                             </div>
                         </div>
                         <div class="dt-responsive table-responsive">
-                            <table id="listEmpleados" class="table table-striped table-bordered nowrap">
+                            <table id="listEmpleados" class="table table-striped table-bordered nowrap" style="cursor: pointer;">
                                 <thead>
                                     <tr>
-                                        <th id="listTh1" ></th>
-                                        <th></th>
-                                        <th>Fecha</th>
-                                        <th>Cuit</th>
-                                        <th>Proveedor</th>
-                                        <th>Tipo</th>
-                                        <th>Número</th>
-                                        <th data-toggle="tooltip" title="Desestimar para Liquidación de IVA">Des.<br/>IVA</th>
-                                        <th data-toggle="tooltip" title="Desestimar para Liquidación de IIBB">Des.<br/>IIBB</th>
-                                        <th>Neto</th>
-                                        <th>Iva</th>
-                                        <th>Total</th>
-                                        <th>Advertencia</th>
+                                        <th id="listTh1"></th>
+                                        <th>Nombre y Apellido</th>
+                                        <th>DNI</th>
+                                        <th>Cargo</th>
+                                        <th>CUIT</th>
+                                        <th>Email</th>
+                                        <th>Telefono</th>
+                                        <th>Fecha de nacimiento</th>
+                                        <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +58,15 @@
 
     <script type="text/javascript">
         var tablaEmpleados;
-        jQuery(document).ready(function() {
+        $(document).ready(function () {
+        //     $("#fechaNacimiento").datepicker({
+        //     startView: "days",
+        //     minViewMode: "days",
+        //     maxViewMode: "years",
+        //     format: "dd/mm/yyyy",
+        //     language: "es",
+        //     autoclose: true
+        // })
             tablaEmpleados = $('#listEmpleados').DataTable({
                 "ordering": true,
                 "searching": true,
@@ -85,23 +94,32 @@
                 ],
                 aoColumnDefs: [{
                                 "aTargets": [0],
-                                "mData": "cuit",
-                                'sClass': 'bold'
+                                "mData": "id",
+                                "visible": false,
                             },{
                                 "aTargets": [1],
-                                "mData": "razonSocial"
+                                "mData": "nombreApellido",
                             },{
                                 "aTargets": [2],
-                                "mData": "locales",
+                                "mData": "dni"
                             },{
                                 "aTargets": [3],
-                                "mData": "email"
+                                "mData": "cargo",
                             },{
                                 "aTargets": [4],
-                                "mData": "telefono"
+                                "mData": "cuit",
                             },{
                                 "aTargets": [5],
-                                "mData": "etiqueta"
+                                "mData": "email"
+                            },{
+                                "aTargets": [6],
+                                "mData": "telefono"
+                            },{
+                                "aTargets": [7],
+                                "mData": "fechaNacimiento"
+                            },{
+                                "aTargets": [8],
+                                "mData": "estado"
                             }],
                 buttons: [{
                         extend: 'excelHtml5',
@@ -127,6 +145,7 @@
                 fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                     // Row click
                     $(nRow).off('click').on('click', function() {
+                        window.location.href = "${createLink(action: 'edit')}/" + aData.id
                     });
                 }
             });
