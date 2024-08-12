@@ -21,6 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet" />
         <asset:stylesheet src="application" />
         <asset:javascript src="application" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <g:layoutHead />
         <style>
