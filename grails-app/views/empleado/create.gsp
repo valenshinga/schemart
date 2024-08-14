@@ -7,7 +7,7 @@
 
 <body>
 	<div class="main-body">
-		<div class="page-wrapper" style="height:4em">
+		<div class="page-wrapper">
 			<div class="page-header card" style="width:96%;">
 				<div class="row align-items-end">
 					<div class="page-header-title col-sm-9">

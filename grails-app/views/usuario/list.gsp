@@ -8,7 +8,7 @@
 
 <body>
     <div class="main-body ">
-        <div class="page-wrapper" style="height:4em;">
+        <div class="page-wrapper">
             <div class="page-header card">
                 <div class="row align-items-end">
                     <div class="col-lg-8">
