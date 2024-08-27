@@ -3,6 +3,7 @@ package com.schemart.alumno
 import com.schemart.Auxiliar
 import com.schemart.Estado
 import com.schemart.idioma.Idioma
+import com.schemart.disponibilidad.Disponibilidad
 
 import org.joda.time.LocalDate
 
@@ -16,9 +17,9 @@ class Alumno {
 	String telefono
 	LocalDate fechaNacimiento
 	Estado estado
-	String tipoCurso
+	TipoCurso tipoCurso
 
-	static hasMany = [idiomas: Idioma, disponibilidad: DisponibilidadAlumno]
+	static hasMany = [idiomas: Idioma, disponibilidad: Disponibilidad]
 	static belongsTo = [empresa: Empresa]
 
 	static constraints = {
