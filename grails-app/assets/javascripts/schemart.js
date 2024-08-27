@@ -65,75 +65,60 @@ $(document).ready(function() {
 });
 
 function llenarCombo(params) {
-	/**
-	 * Llena un elemento select con opciones obtenidas a través de una petición AJAX o a partir de un conjunto de datos proporcionado.
-	 *
-	 * @param {Object} params - Objeto que contiene los parámetros de configuración.
-	 * @param {string} params.comboId - ID del elemento select a llenar (sin incluir el símbolo #).
-	 * @param {string} [params.ajaxUrlDiv] - ID del div oculto que contiene la URL para la petición AJAX (sin incluir el símbolo #). No se utiliza si se proporciona 'params.ajaxLink'.
-	 * @param {string} [params.ajaxLink] - URL para la petición AJAX. Sobreescribe a 'params.ajaxUrlDiv' si ambos están presentes.
-	 * @param {*} [params.idDefault] - Valor que se seleccionará por defecto en el combo. Si no se proporciona, se seleccionará la primera opción.
-	 * @param {Object} [params.parametros] - Mapa de datos a enviar en la petición AJAX.
-	 * @param {string} [params.atributo="nombre"] - Atributo del objeto a mostrar como texto en las opciones del combo.
-	 * @param {string} [params.identificador="id"] - Atributo del objeto a utilizar como valor en las opciones del combo.
-	 * @param {boolean} [params.readOnly=false] - Indica si el combo debe inicializarse en modo de solo lectura.
-	 * @param {Array} [params.data] - Arreglo de objetos a utilizar en lugar de hacer una petición AJAX. Cada objeto debe tener propiedades 'id' y 'nombre'.
-	 * @param {function} [params.onDataLoaded] - Función a ejecutar cuando se haya cargado toda la data en el combo.
-	 */
-	var comboId = params.comboId;
-	var ajaxUrlDiv = params.hasOwnProperty("ajaxUrlDiv") ? params.ajaxUrlDiv : null;
-	var ajaxLink = params.hasOwnProperty("ajaxLink") ? params.ajaxLink : null;
-	var idDefault = params.hasOwnProperty("idDefault") ? params.idDefault : null;
-	var datosPasar = params.hasOwnProperty("parametros") ? params.parametros : null;
-	var atributo = params.hasOwnProperty("atributo") ? params.atributo : "nombre";
-	var identificador = params.hasOwnProperty("identificador") ? params.identificador : "id";
-	var readOnly = params.hasOwnProperty("readOnly") ? params.readOnly : false;
-	var data = params.hasOwnProperty("data") ? params.data : null;
-	var onDataLoaded = params.hasOwnProperty("onDataLoaded") ? params.onDataLoaded : null;
+    var comboId = params.comboId;
+    var ajaxUrlDiv = params.hasOwnProperty("ajaxUrlDiv") ? params.ajaxUrlDiv : null;
+    var ajaxLink = params.hasOwnProperty("ajaxLink") ? params.ajaxLink : null;
+    var idDefault = params.hasOwnProperty("idDefault") ? params.idDefault : null;
+    var datosPasar = params.hasOwnProperty("parametros") ? params.parametros : null;
+    var atributo = params.hasOwnProperty("atributo") ? params.atributo : "nombre";
+    var identificador = params.hasOwnProperty("identificador") ? params.identificador : "id";
+    var readOnly = params.hasOwnProperty("readOnly") ? params.readOnly : false;
+    var data = params.hasOwnProperty("data") ? params.data : null;
+    var onDataLoaded = params.hasOwnProperty("onDataLoaded") ? params.onDataLoaded : null;
 
-	var combo = $('#' + comboId)
-	combo.children('option').remove();
+    var combo = $('#' + comboId);
+    combo.children('option').remove();
 
-	if (data != null) {
-		$.map(data, function(item) {
-			var seleccionado = item[identificador] == idDefault
-			combo.append(new Option(item[atributo], item[identificador], seleccionado, seleccionado));
-		});
+    // Check if idDefault is a string with a comma, split into an array, otherwise treat as array of one
+    if (idDefault != null) {
+        if (typeof idDefault === 'string' && idDefault.includes(',')) {
+            idDefault = idDefault.split(',');
+        } else {
+            idDefault = [String(idDefault)];
+        }
+    } else {
+        idDefault = [];
+    }
 
-		if (idDefault != null)
-			combo.val(idDefault);
-		if (combo.val())
-			combo.trigger("change");
+    function populateCombo(data) {
+        $.map(data, function(item) {
+            var seleccionado = idDefault.includes(String(item[identificador])); // Check if the ID is in the idDefault array
+            combo.append(new Option(item[atributo], item[identificador], seleccionado, seleccionado));
+        });
 
-		if (readOnly)
-			toggleReadOnlyCombo(comboId);
+        if (idDefault.length > 0)
+            combo.val(idDefault).trigger("change"); // Set multiple values in select2
 
-		if (onDataLoaded)
-			onDataLoaded()
-	}
-	else {
-		var urlDestino = ajaxLink != null ? ajaxLink : $('#' + ajaxUrlDiv).text();
-		$.ajax(urlDestino, {
-			dataType: "json",
-			data: datosPasar
-		}).done(function(data) {
-			$.map(data, function(item) {
-				var seleccionado = item[identificador] == idDefault
-				combo.append(new Option(item[atributo], item[identificador], seleccionado, seleccionado));
-			});
-			if (idDefault != null)
-				combo.val(idDefault);
-			if (combo.val())
-				combo.trigger("change");
+        if (readOnly)
+            toggleReadOnlyCombo(comboId);
 
-			if (readOnly)
-				toggleReadOnlyCombo(comboId);
+        if (onDataLoaded)
+            onDataLoaded();
+    }
 
-			if (onDataLoaded)
-				onDataLoaded()
-		});
-	}
+    if (data != null) {
+        populateCombo(data);
+    } else {
+        var urlDestino = ajaxLink != null ? ajaxLink : $('#' + ajaxUrlDiv).text();
+        $.ajax(urlDestino, {
+            dataType: "json",
+            data: datosPasar
+        }).done(function(data) {
+            populateCombo(data);
+        });
+    }
 }
+
 
 function toggleReadOnlyCombo(comboId, valorAbsoluto = null){
 	var combo = $('#' + comboId);
