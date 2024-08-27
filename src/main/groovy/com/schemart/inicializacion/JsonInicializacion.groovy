@@ -3,11 +3,8 @@ package com.schemart.inicializacion
 import grails.converters.JSON
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import org.joda.time.Days
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
-import org.joda.time.Minutes
-import org.joda.time.Months
 import com.schemart.User
 import com.schemart.Role
 import com.schemart.empleado.Empleado

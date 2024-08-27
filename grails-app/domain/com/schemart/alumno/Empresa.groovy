@@ -4,10 +4,6 @@ import com.schemart.Auxiliar
 import com.schemart.Estado
 import com.schemart.idioma.Idioma
 
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
-import org.joda.time.format.DateTimeFormat
-
 class Empresa {
 
     String razonSocial
