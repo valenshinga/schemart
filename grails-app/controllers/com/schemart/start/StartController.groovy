@@ -6,7 +6,6 @@ import com.schemart.User
 import com.schemart.UserRole
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
-import org.joda.time.LocalDateTime
 
 class StartController {
 	AccessRulesService accessRulesService
