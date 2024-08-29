@@ -8,6 +8,9 @@ import org.joda.time.LocalDateTime
 import com.schemart.User
 import com.schemart.Role
 import com.schemart.empleado.Empleado
+import com.schemart.alumno.Alumno
+import com.schemart.idioma.Idioma
+import com.schemart.disponibilidad.Disponibilidad
 
 class JsonInicializacion {
 	private static DecimalFormat decimalCurencyFormat = null;
@@ -76,6 +79,37 @@ class JsonInicializacion {
 			returnArray['fechaNacimiento'] = it.fechaNacimiento.toString('dd/MM/YYYY')
 			returnArray['cargo'] = it.cargo 
 			returnArray['estado'] = it.estado.nombre
+			return returnArray
+		}
+
+		JSON.registerObjectMarshaller(Alumno){
+			def returnArray = [:]
+			returnArray['id'] = it.id
+			returnArray['nombreApellido'] = "${it.nombre} ${it.apellido}" 
+			returnArray['domicilio'] = it.domicilio
+			returnArray['email'] = it.email ?: '-'
+			returnArray['telefono'] = it.telefono ?: '-'
+			returnArray['fechaNacimiento'] = it.fechaNacimiento.toString('dd/MM/YYYY')
+			returnArray['tipoCurso'] = it.tipoCurso?.nombre 
+			returnArray['estado'] = it.estado?.nombre
+			return returnArray
+		}
+
+		JSON.registerObjectMarshaller(Idioma){
+			def returnArray = [:]
+			returnArray['id'] = it.id
+			returnArray['idioma'] = "${it.nombre} ${it.nivel}" 
+			returnArray['nombre'] = it.nombre 
+			returnArray['nivel'] = it.nivel
+			return returnArray
+		}
+
+		JSON.registerObjectMarshaller(Disponibilidad){
+			def returnArray = [:]
+			returnArray['id'] = it.id
+			returnArray['dia'] = it.dia 
+			returnArray['desde'] = it.desde.toString('HH:mm') 
+			returnArray['hasta'] = it.hasta.toString('HH:mm') 
 			return returnArray
 		}
 	}
