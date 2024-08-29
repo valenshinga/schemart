@@ -15,6 +15,11 @@ class FirstInterceptor {
 		String ipAddress = ""
 		ipAddress = request.getHeader("Client-IP")
 		String email = "no-user"
+		def userInstance = springSecurityService.currentUser
+		
+		if (userInstance){
+			email = springSecurityService.currentUser.username
+		}
 
 		// def urlsNoLogueables = ['/notificacion/mailgunDeliveredEvent','/notificacion/mailgunOpensEvent','/notificacion/mailgunClicksEvent']
 		// def actionsSinVerificar = ['pasosRegistro','pagarMovimientosMail', 'confirmarCUIT','accesoDashboard','appGetDatosCuit','appGetImportes','guardarTokenPush', 'ajaxGetObrasSociales', 'ajaxGetNacionalidades', 'ajaxGetApps', 'ajaxGetProvincias']
@@ -42,10 +47,10 @@ class FirstInterceptor {
 		parametros = parametros.getAt(0..parametros.length()-2)
 		parametros += "]"
 
-		// if(printear && !urlsNoLogueables.contains(request.forwardURI) ){
-		// 	log.info(ahora.toString("dd/MM/YYYY HH:mm:ss") + " user:" + email + " request:" + request.forwardURI + " ip:" + ipAddress + " params: $parametros")
-		// 	println  ahora.toString("\ndd/MM/YYYY HH:mm:ss") + " user:" + email + " request:" + request.forwardURI + " ip:" + ipAddress + " params: $parametros"
-		// }
+		if(printear){
+			log.info(ahora.toString("dd/MM/YYYY HH:mm:ss") + " user:" + email + " request:" + request.forwardURI + " ip:" + ipAddress + " params: $parametros")
+			println  ahora.toString("\ndd/MM/YYYY HH:mm:ss") + " user:" + email + " request:" + request.forwardURI + " ip:" + ipAddress + " params: $parametros"
+		}
 		
 		return true
 	}

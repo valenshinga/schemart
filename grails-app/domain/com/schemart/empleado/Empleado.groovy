@@ -3,6 +3,7 @@ package com.schemart.empleado
 import com.schemart.Auxiliar
 import com.schemart.Estado
 import com.schemart.idioma.Idioma
+import com.schemart.disponibilidad.Disponibilidad
 
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
@@ -21,7 +22,7 @@ class Empleado {
 	String cargo 
 	Estado estado
 
-	static hasMany = [idiomas: Idioma, disponibilidad: DisponibilidadDocente]
+	static hasMany = [idiomas: Idioma, disponibilidad: Disponibilidad]
 
 	static constraints = {
 		nombre nullable: false

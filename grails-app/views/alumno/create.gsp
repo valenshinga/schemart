@@ -11,7 +11,7 @@
 			<div class="page-header card" style="width:96%;">
 				<div class="row align-items-end">
 					<div class="page-header-title col-sm-9">
-						<h4>Crear empleado</h4>
+						<h4>Crear Alumno</h4>
 					</div>
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-block">
-								<h4 class="sub-title">Datos Empleado</h4>
+								<h4 class="sub-title">Datos Alumno</h4>
 								<g:uploadForm action="save">
 									<g:render template="form"/>
 									<div class="row">

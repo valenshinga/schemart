@@ -11,7 +11,7 @@
 			<div class="page-header card" style="width:96%;">
 				<div class="row align-items-end">
 					<div class="page-header-title col-sm-9">
-						<h4>Empleados</h4>
+						<h4>Alumnos</h4>
 					</div>
 				</div>
 			</div>
@@ -26,21 +26,19 @@
 					<div class="card-block ">
 						<div class="row d-flex justify-content-end" style="margin-bottom:15px;">
 							<div class="col-1 d-flex justify-content-end">
-								<g:link action="create" class="btn btn-primary"  title="Crear empleado">Crear</g:link>
+								<g:link action="create" class="btn btn-primary"  title="Crear Alumno">Crear</g:link>
 							</div>
 						</div>
 						<div class="dt-responsive table-responsive">
-							<table id="listEmpleados" class="table table-striped table-bordered nowrap" style="cursor: pointer;">
+							<table id="listAlumnos" class="table table-striped table-bordered nowrap" style="cursor: pointer;">
 								<thead>
 									<tr>
 										<th id="listTh1"></th>
 										<th>Nombre y Apellido</th>
-										<th>DNI</th>
-										<th>Cargo</th>
-										<th>CUIT</th>
 										<th>Email</th>
 										<th>Telefono</th>
 										<th>Fecha de nacimiento</th>
+										<th>Curso</th>
 										<th>Estado</th>
 									</tr>
 								</thead>
@@ -57,7 +55,7 @@
 
 
 	<script type="text/javascript">
-		var tablaEmpleados;
+		var tablaAlumnos;
 		$(document).ready(function () {
 		//     $("#fechaNacimiento").datepicker({
 		//     startView: "days",
@@ -67,7 +65,7 @@
 		//     language: "es",
 		//     autoclose: true
 		// })
-			tablaEmpleados = $('#listEmpleados').DataTable({
+			tablaAlumnos = $('#listAlumnos').DataTable({
 				"ordering": true,
 				"searching": true,
 				oLanguage: {
@@ -91,7 +89,7 @@
 				//scrollX: true,
 				aaSorting: [
 					[0, 'desc']
-				],
+				],		
 				aoColumnDefs: [{
 								"aTargets": [0],
 								"mData": "id",
@@ -101,31 +99,25 @@
 								"mData": "nombreApellido",
 							},{
 								"aTargets": [2],
-								"mData": "dni"
-							},{
-								"aTargets": [3],
-								"mData": "cargo",
-							},{
-								"aTargets": [4],
-								"mData": "cuit",
-							},{
-								"aTargets": [5],
 								"mData": "email"
 							},{
-								"aTargets": [6],
-								"mData": "telefono"
+								"aTargets": [3],
+								"mData": "telefono",
 							},{
-								"aTargets": [7],
+								"aTargets": [4],
 								"mData": "fechaNacimiento"
 							},{
-								"aTargets": [8],
+								"aTargets": [5],
+								"mData": "tipoCurso"
+							},{
+								"aTargets": [6],
 								"mData": "estado"
 							}],
 				buttons: [{
 						extend: 'excelHtml5',
 						text: '<i class="fa fa-file-excel-o"></i>',
 						title: function () {
-								var nombre = "Cuentas";
+								var nombre = "Alumnos";
 								return nombre;
 						}
 					},{
@@ -133,7 +125,7 @@
 						orientation: 'landscape',
 						text: '<i class="fa fa-file-pdf-o"></i>',
 						title: function () {
-							var nombre = "Cuentas";
+							var nombre = "Alumnos";
 								return nombre;
 						}
 					},{
@@ -150,22 +142,22 @@
 				}
 			});
 
-			llenarDatoslistEmpleados()
+			llenarDatoslistAlumnos()
 	
 			$('#loaderGrande').fadeOut('slow', function() {
 				$(this).hide();
 			});
 		});
-		function llenarDatoslistEmpleados(){
-		tablaEmpleados.clear().draw();
-		$.ajax("${createLink(controller:'empleado', action: 'ajaxGetEmpleados')}", {
-			dataType: "json",
-			data: {
-			}
-		}).done(function(data) {
-			tablaEmpleados.rows.add(data).draw()
-		});
-	}
+		function llenarDatoslistAlumnos(){
+			tablaAlumnos.clear().draw();
+			$.ajax("${createLink(controller:'alumno', action: 'ajaxGetAlumnos')}", {
+				dataType: "json",
+				data: {
+				}
+			}).done(function(data) {
+				tablaAlumnos.rows.add(data).draw()
+			});
+		}
 	</script>
 </body>
 

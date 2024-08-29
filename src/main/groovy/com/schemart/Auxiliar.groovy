@@ -400,4 +400,27 @@ class Auxiliar {
 			salida = new Double(string.replaceAll("\\.","").replaceAll(",","."))
 		return salida
 	}
+
+	public static Map<String, String> separarTiempo(String tiempo) {
+		def salida = [:]
+		def partes = tiempo.split(':')
+
+		salida.hora = partes[0]
+		salida.minuto = partes[1] 
+		
+		return salida
+	}
+
+	public static Map parseJson(txt){
+		def lazyMap = new groovy.json.JsonSlurper().parseText(txt)
+		println 'esto es lazymap: ' + lazyMap
+		def map = [:]
+		for ( prop in lazyMap ) {
+			println prop
+			map[prop.key] = prop.value
+		}
+		println map
+		return map
+	}
+
 }

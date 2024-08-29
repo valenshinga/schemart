@@ -1,7 +1,6 @@
 package com.schemart.clase
 
 import com.schemart.User
-import org.joda.time.LocalDateTime
 import com.schemart.alumno.Alumno
 import com.schemart.Estado
 
