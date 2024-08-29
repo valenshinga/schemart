@@ -5,6 +5,8 @@ import com.schemart.Role
 import com.schemart.User
 import com.schemart.Estado
 import com.schemart.UserRole
+import com.schemart.alumno.TipoCurso
+import com.schemart.idioma.Idioma
 
 import java.nio.charset.Charset
 import org.joda.time.LocalDate
@@ -14,71 +16,98 @@ class Inicializacion {
 	static def comienzo(){
 		println "######################################################################"
 		println "Verificando datos del sistema generales..."
-        inicializarRoles()
+		inicializarRoles()
 		inicializarUsuarios()
 		inicializarEstados()
-        inicializarMenues()
+		inicializarMenues()
+		inicializarTiposCursos()
+		inicializarIdiomas()
 	}
 
 	private static void inicializarEstados() {
-        println "Inicializando estados"
-        ["Activo", "Inactivo", "Confirmado", "Pendiente"].each { estado ->
-            if (! Estado.findByNombre(estado)){
+		println "Inicializando estados"
+		["Activo", "Inactivo", "Confirmado", "Pendiente"].each { estado ->
+			if (! Estado.findByNombre(estado)){
 				new Estado(nombre:estado).save(flush:true)
 				println "    Estado $estado creado"
 			}
-        }
-    }
+		}
+	}
 
-    private static void inicializarRoles() {
-        println "Inicializando roles"
-        def roles = [
-            ["authority": "ROLE_SUPER_ADMIN"],
-            ["authority": "ROLE_ADMIN"],
-            ["authority": "ROLE_DOCENTE"],
+	private static void inicializarIdiomas() {
+		println "Inicializando idiomas"
+		def idiomas = [
+			["nombre": "Español", "nivel": "A1"], ["nombre": "Español", "nivel": "A2"],
+			["nombre": "Español", "nivel": "B1"], ["nombre": "Español", "nivel": "B2"],
+			["nombre": "Español", "nivel": "C1"], ["nombre": "Español", "nivel": "C2"],
+		]
+		idiomas.each { idioma ->
+			if (! Idioma.findByNombreAndNivel(idioma.nombre, idioma.nivel)){
+				new Idioma(nombre:idioma.nombre, nivel:idioma.nivel).save(flush:true)
+				println "    Idioma $idioma.nombre $idioma.nivel creado"
+			}
+		}
+	}
+
+	private static void inicializarTiposCursos() {
+		println "Inicializando tipos de cursos"
+		["Grupal", "Individual", "Empresa"].each { tipo ->
+			if (! TipoCurso.findByNombre(tipo)){
+				new TipoCurso(nombre:tipo).save(flush:true)
+				println "    TipoCurso $tipo creado"
+			}
+		}
+	}
+
+	private static void inicializarRoles() {
+		println "Inicializando roles"
+		def roles = [
+			["authority": "ROLE_SUPER_ADMIN"],
+			["authority": "ROLE_ADMIN"],
+			["authority": "ROLE_DOCENTE"],
 			["authority": "ROLE_DIRECCION"],
 			["authority": "ROLE_ADMINISTRACION"]
-        ]
-        roles.each { rol ->
-            if(Role.findByAuthority(rol.authority)) return
-            new Role(rol).save(flush: true, failOnError: true)
-        }
-    }
+		]
+		roles.each { rol ->
+			if(Role.findByAuthority(rol.authority)) return
+			new Role(rol).save(flush: true, failOnError: true)
+		}
+	}
 
 	private static void inicializarUsuarios() {
-        println "Inicializando usuarios"
-        def usuarios = [
-            ["username": "valentinshingaki@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
-             "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_SUPER_ADMIN')]],
-            ["username": "testeradmin@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
-             "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_ADMIN')]],
-            ["username": "testeruser@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
-             "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_USER')]]
-        ]
-        usuarios.each { usuario ->
-            if(User.findByUsername(usuario.username)) return
-            def user = new User(usuario).save(flush: true, failOnError: true)
-            usuario.roles.each { rol ->
-                UserRole.create(user, rol, true)
-            }
-        }
-    }
+		println "Inicializando usuarios"
+		def usuarios = [
+			["username": "valentinshingaki@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_SUPER_ADMIN')]],
+			["username": "testeradmin@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_ADMIN')]],
+			["username": "testeruser@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_USER')]]
+		]
+		usuarios.each { usuario ->
+			if(User.findByUsername(usuario.username)) return
+			def user = new User(usuario).save(flush: true, failOnError: true)
+			usuario.roles.each { rol ->
+				UserRole.create(user, rol, true)
+			}
+		}
+	}
 
-    private static void inicializarMenues(){
-        println "Inicializando menues"
-        Role superAdmin = Role.findByAuthority('ROLE_SUPER_ADMIN')
-        Role admin = Role.findByAuthority('ROLE_ADMIN')
+	private static void inicializarMenues(){
+		println "Inicializando menues"
+		Role superAdmin = Role.findByAuthority('ROLE_SUPER_ADMIN')
+		Role admin = Role.findByAuthority('ROLE_ADMIN')
 		Role administracion = Role.findByAuthority('ADMINISTRACION')
 		Role docente = Role.findByAuthority('ROLE_DOCENTE')
-        def nuevos = [
+		def nuevos = [
 			[
 				nombre: 'Dashboard',
-                icono: 'icofont icofont-ui-home',
-                roles: [admin, superAdmin, docente, administracion]
+				icono: 'icofont icofont-ui-home',
+				roles: [admin, superAdmin, docente, administracion]
 			],
 			[   nombre: 'Gestión',
-                icono: 'icofont icofont-options',
-                roles: [admin, superAdmin, docente, administracion],
+				icono: 'icofont icofont-options',
+				roles: [admin, superAdmin, docente, administracion],
 				hijos: [
 					[
 						nombre: 'Empleados',
@@ -88,8 +117,8 @@ class Inicializacion {
 					],
 					[
 						nombre: 'Alumnos',
-						// controller: '',
-						// action: '',
+						controller: 'alumno',
+						action: 'list',
 						roles: [admin, superAdmin, docente, administracion]
 					],
 					[
@@ -111,10 +140,10 @@ class Inicializacion {
 						roles: [admin, superAdmin]
 					]
 				]
-            ],
+			],
 			[   nombre: 'Clases',
-                icono: 'icofont icofont-book',
-                roles: [admin, superAdmin, docente],
+				icono: 'icofont icofont-book',
+				roles: [admin, superAdmin, docente],
 				hijos: [
 					[
 						nombre: 'Clases',
@@ -135,10 +164,10 @@ class Inicializacion {
 						roles: [admin, superAdmin, docente]
 					]
 				]
-            ],
+			],
 			[   nombre: 'Reportes',
-                icono: 'icofont icofont-chart-bar-graph',
-                roles: [admin, superAdmin, docente, administracion],
+				icono: 'icofont icofont-chart-bar-graph',
+				roles: [admin, superAdmin, docente, administracion],
 				hijos: [
 					[
 						nombre: 'General',
@@ -165,8 +194,8 @@ class Inicializacion {
 						roles: [admin, superAdmin, administracion]
 					]
 				]
-            ]]
-        nuevos.each{ menu ->
+			]]
+		nuevos.each{ menu ->
 			int orden = 10
 			println "nombre $menu.nombre, icono $menu.icono, controller $menu.controller, action $menu.action"
 			def nodo = ItemMenu.findByPadreAndNombreAndIconoAndControllerAndAction(null, menu.nombre, menu.icono, menu.controller, menu.action)
@@ -215,5 +244,5 @@ class Inicializacion {
 			}
 			orden+=10
 		}
-    }
+	}
 }
