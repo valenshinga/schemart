@@ -57,24 +57,22 @@ class AlumnoService {
 		alumnoInstance.fechaNacimiento = LocalDate.parse(command.fechaNacimiento)
 		alumnoInstance.tipoCurso = TipoCurso.get(command.tipoCursoId)
 		alumnoInstance.estado = Estado.findByNombre('Activo')
-		
-		// Inicializar las colecciones
 		alumnoInstance.disponibilidad = []
 		alumnoInstance.idiomas = []
+		
+		alumnoInstance = alumnoInstance.save(flush: true, failOnError: true)
 
-		// Procesar y agregar disponibilidades
+
 		def disponibilidadesList = disponibilidades ? new JsonSlurper().parseText(disponibilidades) : []
 		disponibilidadesList.each { disponibilidad ->
 			def disponibilidadGuardada = disponibilidadService.saveDisponibilidad(disponibilidad)
 			alumnoInstance.addToDisponibilidad(disponibilidadGuardada)
 		}
 
-		// Agregar los idiomas
 		command.idiomas.each { id ->
 			alumnoInstance.addToIdiomas(Idioma.get(id))
 		}
 
-		// Ahora guarda el Alumno con todas las disponibilidades e idiomas añadidos
 		alumnoInstance.save(flush: true, failOnError: true)
 	}
 
@@ -86,7 +84,7 @@ class AlumnoService {
 
 		def disponibilidadesAEliminar = []
 		alumnoInstance.disponibilidad.each { disponibilidad ->
-			if (!disponibilidad.id.toInteger() in disponibilidadesRecibidasConId){
+			if (!disponibilidadesRecibidasConId.contains(disponibilidad.id.toInteger())){
 				disponibilidadesAEliminar << disponibilidad
 			}
 		}
