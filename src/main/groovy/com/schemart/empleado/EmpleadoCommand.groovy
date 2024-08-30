@@ -24,6 +24,7 @@ class EmpleadoCommand implements Validateable{
 	String fechaNacimiento
 	String cargo 
 	Long estadoId
+    List<Long> idiomas
 
 	static constraints = {
 		id nullable: true
@@ -39,5 +40,6 @@ class EmpleadoCommand implements Validateable{
 		fechaNacimiento nullable: false
 		cargo nullable: false
 		estadoId nullable: true
+		idiomas nullable:true
 	}
 } 
