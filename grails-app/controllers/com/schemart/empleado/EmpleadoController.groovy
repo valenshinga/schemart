@@ -21,9 +21,9 @@ class EmpleadoController {
 
 	}
 
-	def save(EmpleadoCommand command){
+	def save(EmpleadoCommand command, String disponibilidades){
 		try{
-			empleadoService.saveEmpleado(command)
+			empleadoService.saveEmpleado(command, disponibilidades)
 			flash.message = "Guardado exitoso"
 			redirect(action: 'list')
 		}
@@ -39,19 +39,21 @@ class EmpleadoController {
 	
 	def edit(Long id) {
 		def empleado = empleadoService.getEmpleadoCommand(id)
-		render(view: "edit", model:[command: empleado])  
+		def empleadoIdiomas = empleado?.idiomas?.join(',')
+		render(view: "edit", model:[command: empleado, idiomas:empleadoIdiomas])
 	}
 	
-	def update(EmpleadoCommand command) {  
+	def update(EmpleadoCommand command, String disponibilidades) {  
 		try{
-			empleadoService.updateEmpleado(command)
+			empleadoService.updateEmpleado(command, disponibilidades)
 			flash.message = "Guardado exitoso"
 			redirect(action: 'list')
 		}
 		catch(Exception e){
 			Auxiliar.printearError e
 			flash.error = "Error guardando empleado"
-			render(view: 'edit', model:[command:command])
+			def empleadoIdiomas = command?.idiomas?.join(',')
+			render(view: "edit", model:[command: command, idiomas:empleadoIdiomas])
 		}
 	}
 

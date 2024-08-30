@@ -315,6 +315,34 @@
 				$(this).val($(this).val().slice(0, maxLength));
 			}
 		});
+
+		$('#desde').on('input', function() {
+			const maxLength = 5;
+			if ($(this).val().length > maxLength) {
+				$(this).val($(this).val().slice(0, maxLength));
+			}
+			let desde = $(this).val().replace(/-/g, '');
+
+			if (desde.length > 2 && desde.length <= 4) {
+				desde = desde.slice(0, 2) + ':' + desde.slice(2);
+			}
+
+			$(this).val(desde);
+		});
+
+		$('#hasta').on('input', function() {
+			const maxLength = 5;
+			if ($(this).val().length > maxLength) {
+				$(this).val($(this).val().slice(0, maxLength));
+			}
+			let hasta = $(this).val().replace(/-/g, '');
+
+			if (hasta.length > 2 && hasta.length <= 4) {
+				hasta = hasta.slice(0, 2) + ':' + hasta.slice(2);
+			}
+
+			$(this).val(hasta);
+		});
 	});
 
 	function limpiarModal(){

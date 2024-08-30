@@ -18,7 +18,12 @@ class DisponibilidadService {
 	}
 
 	def listDisponibilidadesDocente(Long id){
-		return Disponibilidad.findAllByDocente(id)  
+		def disponibilidades = Disponibilidad.createCriteria().list {
+			docente {
+				eq("id", id)
+			}
+		}
+		return disponibilidades  
 	}
 
 	def saveDisponibilidad(disponibilidad) {
