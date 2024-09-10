@@ -128,6 +128,12 @@ class Inicializacion {
 						roles: [admin, superAdmin, docente, administracion]
 					],
 					[
+						nombre: 'Idiomas',
+						controller: 'idioma',
+						action: 'list',
+						roles: [admin, superAdmin, docente, administracion]
+					],
+					[
 						nombre: 'Eventos',
 						// controller: '',
 						// action: '',
