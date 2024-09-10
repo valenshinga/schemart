@@ -76,8 +76,4 @@ class AlumnoController {
     def ajaxGetTiposCursos(){
 		render alumnoService.listTiposCursos() as JSON
 	}
-
-    def ajaxGetIdiomas(){
-        render alumnoService.listIdiomas() as JSON
-    }
 }

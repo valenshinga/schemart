@@ -259,7 +259,7 @@
 		console.log(lista)
 		llenarCombo({
 			comboId : "cbIdiomas",
-			ajaxLink : "${createLink(controller: 'alumno', action: 'ajaxGetIdiomas')}",
+			ajaxLink : "${createLink(controller: 'idioma', action: 'ajaxGetIdiomas')}",
 			idDefault : lista,
 			identificador: "id",
 			atributo: "idioma"
