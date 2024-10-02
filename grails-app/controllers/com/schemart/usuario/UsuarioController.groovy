@@ -3,7 +3,6 @@ package com.schemart
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import com.schemart.AccessRulesService
-import com.schemart.notificacion.NotificacionService
 import grails.plugin.springsecurity.ui.RegistrationCode
 
 
@@ -16,7 +15,6 @@ class UsuarioController {
 
 //     def usuarioService
 //     def accessRulesService
-//     def notificacionService
 //     def springSecurityService
 
 //     def index() {

@@ -3,7 +3,6 @@ package com.schemart.idioma
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import com.schemart.AccessRulesService
-import com.schemart.notificacion.NotificacionService
 import grails.plugin.springsecurity.ui.RegistrationCode
 import com.schemart.Auxiliar
 
