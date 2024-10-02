@@ -153,8 +153,8 @@ class Inicializacion {
 				hijos: [
 					[
 						nombre: 'Clases',
-						// controller: '',
-						// action: '',
+						controller: 'clase',
+						action: 'list',
 						roles: [admin, superAdmin, docente]
 					],
 					[
