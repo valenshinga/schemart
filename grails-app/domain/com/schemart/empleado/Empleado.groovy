@@ -36,4 +36,8 @@ class Empleado {
 		cargo nullable: false
 		estado nullable: false
 	}
+
+	public getNombreCompleto(){
+		return this.apellido + " " + this.nombre
+	}
 }
