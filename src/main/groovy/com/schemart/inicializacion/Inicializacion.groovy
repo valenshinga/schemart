@@ -26,7 +26,7 @@ class Inicializacion {
 
 	private static void inicializarEstados() {
 		println "Inicializando estados"
-		["Activo", "Inactivo", "Confirmado", "Pendiente"].each { estado ->
+		["Activo", "Inactivo", "Confirmado", "Pendiente", "Programada", "Dictada", "Suspendida"].each { estado ->
 			if (! Estado.findByNombre(estado)){
 				new Estado(nombre:estado).save(flush:true)
 				println "    Estado $estado creado"
