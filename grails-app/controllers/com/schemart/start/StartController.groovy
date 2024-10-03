@@ -14,6 +14,6 @@ class StartController {
 	def index() {
 		User userInstance = accessRulesService.getCurrentUser()
 
-		redirect(controller:"busqueda", action:'index')
+		redirect(controller:"clase", action:'list')
 	}
 }
