@@ -4,6 +4,7 @@ import com.schemart.Auxiliar
 import com.schemart.Estado
 import com.schemart.idioma.Idioma
 import com.schemart.disponibilidad.Disponibilidad
+import com.schemart.clase.Clase
 
 import org.joda.time.LocalDate
 
@@ -20,7 +21,6 @@ class Alumno {
 	TipoCurso tipoCurso
 
 	static hasMany = [idiomas: Idioma, disponibilidad: Disponibilidad]
-	static belongsTo = [empresa: Empresa]
 
 	static constraints = {
 		nombre nullable: false
@@ -33,7 +33,6 @@ class Alumno {
 		fechaNacimiento nullable: false
 		idiomas nullable: false
 		disponibilidad nullable: false
-		empresa nullable: true
 		estado nullable: false
 	}
 }

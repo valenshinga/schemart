@@ -3,7 +3,6 @@ package com.schemart.busqueda
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import com.schemart.AccessRulesService
-import com.schemart.notificacion.NotificacionService
 import grails.plugin.springsecurity.ui.RegistrationCode
 
 
@@ -11,7 +10,6 @@ import grails.plugin.springsecurity.ui.RegistrationCode
 class BusquedaController {
     def usuarioService
     def accessRulesService
-    def notificacionService
     def springSecurityService
 
     def index() {

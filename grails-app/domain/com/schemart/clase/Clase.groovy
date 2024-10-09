@@ -1,6 +1,7 @@
 package com.schemart.clase
 
-import org.joda.time.LocalDateTime
+import org.joda.time.LocalDate
+import org.joda.time.LocalTime
 import com.schemart.Estado
 import com.schemart.empleado.Empleado
 import com.schemart.idioma.Idioma
@@ -8,9 +9,10 @@ import com.schemart.alumno.Alumno
 
 class Clase {
 
-    LocalDateTime fecha
+    LocalDate fecha
+    LocalTime inicio
+    LocalTime fin
     Idioma idioma
-    Float duracion
     String descripcion
     String observaciones
     Estado estado
@@ -21,7 +23,6 @@ class Clase {
     static constraints = {
         fecha nullable: false
         idioma nullable: false
-        duracion nullable: false
         descripcion nullable: true
         observaciones nullable: true
         estado nullable: false

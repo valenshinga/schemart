@@ -3,7 +3,6 @@ package com.schemart.alumno
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import com.schemart.AccessRulesService
-import com.schemart.notificacion.NotificacionService
 import grails.plugin.springsecurity.ui.RegistrationCode
 import com.schemart.Auxiliar
 
@@ -75,5 +74,14 @@ class AlumnoController {
 
     def ajaxGetTiposCursos(){
 		render alumnoService.listTiposCursos() as JSON
+	}
+
+	def ajaxGetAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId){
+		def alumnos = alumnoService.listAlumnosDisponibles(fecha, inicio, fin, idiomaId)
+		render alumnos as JSON
+	}
+
+	def ajaxGetAlumnosByClase(Long claseId){
+		render alumnoService.listAlumnosByClase(claseId) as JSON
 	}
 }

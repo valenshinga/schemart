@@ -3,7 +3,6 @@ package com.schemart.empleado
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import com.schemart.AccessRulesService
-import com.schemart.notificacion.NotificacionService
 import grails.plugin.springsecurity.ui.RegistrationCode
 import com.schemart.Auxiliar
 
@@ -71,5 +70,10 @@ class EmpleadoController {
 
 	def ajaxGetEmpleados(){
 		render empleadoService.listEmpleados() as JSON
+	}
+	
+	def ajaxGetDocentesDisponibles(String fecha, String inicio, String fin, Long idiomaId){
+		def docentes = empleadoService.listDocentesDisponibles(fecha, inicio, fin, idiomaId)
+		render docentes as JSON
 	}
 }

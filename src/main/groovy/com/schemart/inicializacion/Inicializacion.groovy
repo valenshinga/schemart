@@ -26,7 +26,7 @@ class Inicializacion {
 
 	private static void inicializarEstados() {
 		println "Inicializando estados"
-		["Activo", "Inactivo", "Confirmado", "Pendiente"].each { estado ->
+		["Activo", "Inactivo", "Confirmado", "Pendiente", "Programada", "Dictada", "Suspendida"].each { estado ->
 			if (! Estado.findByNombre(estado)){
 				new Estado(nombre:estado).save(flush:true)
 				println "    Estado $estado creado"
@@ -134,12 +134,6 @@ class Inicializacion {
 						roles: [admin, superAdmin, docente, administracion]
 					],
 					[
-						nombre: 'Eventos',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente, administracion]
-					],
-					[
 						nombre: 'Usuarios',
 						// controller: '',
 						// action: '',
@@ -153,14 +147,8 @@ class Inicializacion {
 				hijos: [
 					[
 						nombre: 'Clases',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente]
-					],
-					[
-						nombre: 'Notificaciones',
-						// controller: '',
-						// action: '',
+						controller: 'clase',
+						action: 'list',
 						roles: [admin, superAdmin, docente]
 					],
 					[
@@ -176,30 +164,11 @@ class Inicializacion {
 				roles: [admin, superAdmin, docente, administracion],
 				hijos: [
 					[
-						nombre: 'General',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente, administracion]
-					],
-					[
 						nombre: 'Asistencia',
 						// controller: '',
 						// action: '',
 						roles: [admin, superAdmin, docente]
-					],
-					[
-						nombre: 'Facturación',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, administracion]
-					],
-					[
-						nombre: 'Liquidación',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, administracion]
-					]
-				]
+					]]
 			]]
 		nuevos.each{ menu ->
 			int orden = 10

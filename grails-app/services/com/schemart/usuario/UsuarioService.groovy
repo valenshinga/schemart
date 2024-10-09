@@ -5,7 +5,6 @@ import org.hibernate.transform.Transformers
 import java.util.LinkedHashMap
 import grails.plugin.springsecurity.SpringSecurityUtils
 
-import com.schemart.notificacion.NotificacionService
 import com.schemart.AccessRulesService
 import com.schemart.UserRole
 import grails.plugin.springsecurity.ui.RegistrationCode
@@ -18,7 +17,6 @@ class UsuarioService {
     // def sessionFactory
     // def accessRulesService
 
-    // NotificacionService notificacionService
 
     // public List<User> listUsers() {
     //     return User.list()
