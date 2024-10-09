@@ -21,7 +21,6 @@ class Alumno {
 	TipoCurso tipoCurso
 
 	static hasMany = [idiomas: Idioma, disponibilidad: Disponibilidad]
-	static belongsTo = [clase: Clase]
 
 	static constraints = {
 		nombre nullable: false
@@ -35,6 +34,5 @@ class Alumno {
 		idiomas nullable: false
 		disponibilidad nullable: false
 		estado nullable: false
-		clase nullable:true
 	}
 }

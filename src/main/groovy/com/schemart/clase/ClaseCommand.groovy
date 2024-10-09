@@ -10,7 +10,6 @@ class ClaseCommand implements Validateable{
 	String fecha
     String inicio
     String fin
-	Float duracion
 	String descripcion
 	String  observaciones
     Long estadoId
@@ -24,7 +23,6 @@ class ClaseCommand implements Validateable{
 		fecha nullable: false
 		inicio nullable: false
 		fin nullable: false
-		duracion nullable: true
 		descripcion nullable: true
 		observaciones nullable: true
 		estadoId nullable: false

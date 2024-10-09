@@ -6,10 +6,16 @@ import org.joda.time.LocalDate
 import com.schemart.idioma.Idioma
 import groovy.json.JsonSlurper
 import com.schemart.disponibilidad.DisponibilidadService
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.LocalTime
+import org.hibernate.SessionFactory
+import org.hibernate.transform.Transformers
+import com.schemart.clase.Clase
 
 @Transactional
 class AlumnoService {
 	def disponibilidadService
+	SessionFactory sessionFactory
 
 	def listAlumnos(){
 		return Alumno.list()
@@ -138,5 +144,40 @@ class AlumnoService {
 
 	def listIdiomas() {
 		return Idioma.list()
+	}
+
+	// def listAlumnosByClase(Long claseId){
+	// 	return Alumno.findAllByClase(Clase.get(claseId))
+	// }
+
+	def listAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId){
+		String desde = new LocalTime(inicio)
+		String hasta = new LocalTime(fin)
+
+		def formato = DateTimeFormat.forPattern("dd-MM-yyyy")
+		String dia = LocalDate.parse(fecha, formato).dayOfWeek().getAsText(new Locale("es")).capitalize()
+		Idioma idioma = Idioma.get(idiomaId)
+		def query = """
+			SELECT alumno.id, 
+				CONCAT(alumno.apellido, ' ', alumno.nombre) as "nombreCompleto",
+				alumno.email,
+				alumno.telefono
+				FROM alumno 
+				JOIN alumno_idioma 
+				ON alumno_idioma.alumno_idiomas_id = alumno.id 
+				JOIN idioma
+				ON alumno_idioma.idioma_id = idioma.id
+				JOIN disponibilidad 
+				ON disponibilidad.alumno_id = alumno.id
+				WHERE disponibilidad.desde <= '${desde}'
+					AND disponibilidad.hasta >= '${hasta}'
+					AND disponibilidad.dia = '${dia}'
+					AND idioma.nombre = '${idioma.nombre}'
+					AND idioma.nivel = '${idioma.nivel}'
+				GROUP BY alumno.id
+				;
+		"""
+		def alumnos = sessionFactory.currentSession.createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(LinkedHashMap)).list()
+		return alumnos
 	}
 }
