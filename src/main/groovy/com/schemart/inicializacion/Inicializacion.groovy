@@ -100,11 +100,6 @@ class Inicializacion {
 		Role administracion = Role.findByAuthority('ADMINISTRACION')
 		Role docente = Role.findByAuthority('ROLE_DOCENTE')
 		def nuevos = [
-			[
-				nombre: 'Dashboard',
-				icono: 'icofont icofont-ui-home',
-				roles: [admin, superAdmin, docente, administracion]
-			],
 			[   nombre: 'Gestión',
 				icono: 'icofont icofont-options',
 				roles: [admin, superAdmin, docente, administracion],
@@ -122,23 +117,17 @@ class Inicializacion {
 						roles: [admin, superAdmin, docente, administracion]
 					],
 					[
-						nombre: 'Horarios',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente, administracion]
-					],
-					[
 						nombre: 'Idiomas',
 						controller: 'idioma',
 						action: 'list',
 						roles: [admin, superAdmin, docente, administracion]
 					],
-					[
-						nombre: 'Usuarios',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin]
-					]
+					// [
+					// 	nombre: 'Usuarios',
+					// 	// controller: '',
+					// 	// action: '',
+					// 	roles: [admin, superAdmin]
+					// ]
 				]
 			],
 			[   nombre: 'Clases',
@@ -151,25 +140,8 @@ class Inicializacion {
 						action: 'list',
 						roles: [admin, superAdmin, docente]
 					],
-					[
-						nombre: 'Seguimiento',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente]
-					]
 				]
-			],
-			[   nombre: 'Reportes',
-				icono: 'icofont icofont-chart-bar-graph',
-				roles: [admin, superAdmin, docente, administracion],
-				hijos: [
-					[
-						nombre: 'Asistencia',
-						// controller: '',
-						// action: '',
-						roles: [admin, superAdmin, docente]
-					]]
-			]]
+			],]
 		nuevos.each{ menu ->
 			int orden = 10
 			println "nombre $menu.nombre, icono $menu.icono, controller $menu.controller, action $menu.action"
