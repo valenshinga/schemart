@@ -125,7 +125,7 @@
                 data: {
                 }
             }).done(function (data) {
-                $("#loaderGrande").fadeOut("slow");
+                $("#loaderGeneral").fadeOut("slow");
                 tabla.rows.add(data)
                 tabla.draw();
             });

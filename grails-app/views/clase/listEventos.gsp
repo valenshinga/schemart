@@ -11,22 +11,16 @@
 			<div class="page-header card" style="width:96%;">
 				<div class="row align-items-end">
 					<div class="page-header-title col-sm-9">
-						<h4>Alumnos</h4>
+						<h4>Eventos</h4>
 					</div>
 				</div>
 			</div>
-			<!-- <div class="input-group date">
-				<div class="input-group-addon" onclick="$('#fechaNacimiento').datepicker('show')">
-					<span class="icofont icofont-ui-calendar"></span>
-				</div>
-				<input data-format="m" type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control-primary form-control" value="${command?.fechaNacimiento}" style="align-self: left;">
-			</div> -->
 			<div class="page-body">
 				<div class="card">
 					<div class="card-block ">
 						<div class="row d-flex justify-content-end" style="margin-bottom:15px;">
 							<div class="col-1 d-flex justify-content-end">
-								<g:link action="create" class="btn btn-primary"  title="Crear Alumno">Crear</g:link>
+								<g:link action="create" class="btn btn-primary" title="Crear Evento">Crear</g:link>
 							</div>
 						</div>
 						<div class="dt-responsive table-responsive">
@@ -35,11 +29,9 @@
 									<tr>
 										<th id="listTh1"></th>
 										<th>Nombre y Apellido</th>
-										<th>Email</th>
-										<th>Telefono</th>
-										<th>Fecha de nacimiento</th>
-										<th>Curso</th>
-										<th>Estado</th>
+										<th>Fecha</th>
+										<th>Desde</th>
+										<th>Hasta</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -57,14 +49,6 @@
 	<script type="text/javascript">
 		var tablaAlumnos;
 		$(document).ready(function () {
-		//     $("#fechaNacimiento").datepicker({
-		//     startView: "days",
-		//     minViewMode: "days",
-		//     maxViewMode: "years",
-		//     format: "dd/mm/yyyy",
-		//     language: "es",
-		//     autoclose: true
-		// })
 			tablaAlumnos = $('#listAlumnos').DataTable({
 				"ordering": true,
 				"searching": true,
@@ -86,9 +70,8 @@
 					}
 				},
 				iDisplayLength: 100,
-				//scrollX: true,
 				aaSorting: [
-					[0, 'desc']
+					[1, 'desc']
 				],		
 				aoColumnDefs: [{
 								"aTargets": [0],
@@ -99,25 +82,19 @@
 								"mData": "nombreApellido",
 							},{
 								"aTargets": [2],
-								"mData": "email"
+								"mData": "fecha"
 							},{
 								"aTargets": [3],
-								"mData": "telefono",
+								"mData": "desde",
 							},{
 								"aTargets": [4],
-								"mData": "fechaNacimiento"
-							},{
-								"aTargets": [5],
-								"mData": "tipoCurso"
-							},{
-								"aTargets": [6],
-								"mData": "estado"
+								"mData": "hasta"
 							}],
 				buttons: [{
 						extend: 'excelHtml5',
 						text: '<i class="fa fa-file-excel-o"></i>',
 						title: function () {
-								var nombre = "Alumnos";
+								var nombre = "Eventos";
 								return nombre;
 						}
 					},{
@@ -125,7 +102,7 @@
 						orientation: 'landscape',
 						text: '<i class="fa fa-file-pdf-o"></i>',
 						title: function () {
-							var nombre = "Alumnos";
+							var nombre = "Eventos";
 								return nombre;
 						}
 					},{
@@ -137,18 +114,18 @@
 				fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
 					// Row click
 					$(nRow).off('click').on('click', function() {
-						window.location.href = "${createLink(action: 'edit')}/" + aData.id
+						window.location.href = "${createLink(action: 'editEvento')}/" + aData.id
 					});
 				}
 			});
 
-			llenarDatoslistAlumnos()
+			llenarDatoslistEventos()
 	
 			$('#loaderGeneral').fadeOut('slow', function() {
 				$(this).hide();
 			});
 		});
-		function llenarDatoslistAlumnos(){
+		function llenarDatoslistEventos(){
 			tablaAlumnos.clear().draw();
 			$.ajax("${createLink(controller:'alumno', action: 'ajaxGetAlumnos')}", {
 				dataType: "json",

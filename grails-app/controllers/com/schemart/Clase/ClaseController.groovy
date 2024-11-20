@@ -40,7 +40,11 @@ class ClaseController {
 	}
 
 	def ajaxListClases(){
-		render claseService.listClasesByDocente() as JSON
+		render claseService.listClases() as JSON
+	}
+
+	def ajaxListClasesByDocente(Long docenteId){
+		render claseService.listClasesByDocente(docenteId) as JSON
 	}
 
 	def edit(Long id){

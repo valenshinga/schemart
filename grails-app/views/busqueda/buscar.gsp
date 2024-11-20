@@ -161,13 +161,13 @@
                 }
             });
     
-            $('#loaderGrande').fadeOut('slow', function() {
+            $('#loaderGeneral').fadeOut('slow', function() {
                 $(this).hide();
             });
         });
         function buscar(){
             $('#divListCuentas').show()
-            $('#loaderGrande').show()
+            $('#loaderGeneral').show()
             tabla.clear().draw();
             let campo
             if ($("#cbFiltro").val() == "todos")
@@ -196,14 +196,14 @@
                     return
                 }
                 tabla.rows.add(data)
-                $('#loaderGrande').fadeOut('slow', function() {
+                $('#loaderGeneral').fadeOut('slow', function() {
                     $(this).hide();
                 });
                 $("#listCuentas").width("98%");
                 tabla.draw();
             }).fail(function() {
                 swal('Error', 'Hubo un error buscando la cuenta. Por favor actualice la página e intente nuevamente.', 'error');
-                $('#loaderGrande').fadeOut('slow', function() {
+                $('#loaderGeneral').fadeOut('slow', function() {
                     $(this).hide();
                 });
             });

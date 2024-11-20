@@ -1,6 +1,10 @@
+<style>
+	.swal-z-index{
+		z-index: 5001;
+	}
+</style>
 <g:hiddenField id="id" name="id" value="${command?.id}" />
 <g:hiddenField id="estadoId" name="estadoId" value="${command?.estadoId}" />
-<g:hiddenField id="disponibilidades" name="disponibilidades" value="" />
 <div class="form-group row">
 	<label class="col-sm-2 col-form-label">Nombre*</label>
 	<div class="col-sm-10">
@@ -67,79 +71,81 @@
 		<select id="cbIdiomas" class="form-control" name="idiomas" style="border-color: #084c61; color: #084c61;" multiple="multiple"></select>
 	</div>
 </div> 
-<div class="form-group row">
-	<label class="col-sm-2 col-form-label">Disponibilidad*</label>
-	<div class="col-sm-9">
-		<div class="dt-responsive table-responsive">
-			<table id="listDisponibilidades" class="table table-striped table-bordered nowrap compact" style="cursor: pointer; margin: 0px !important;">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Dia</th>
-						<th>Desde</th>
-						<th>Hasta</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-sm-1">
-		<button id="btnAddDisponibilidad" type="button" class="form-control btn btn-primary" onclick="showModalDisponibilidad()">
-			<i class="icofont icofont-ui-add"></i>
-		</button>
-	</div>
-</div> 
-<div class="form-group row">
-	<label class="col-sm-2 col-form-label">Campos obligatorios*</label>
-</div>
-<div class="modal fade" id="modalAgregarDisponibilidad" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg modal-dialog-center" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="tituloModal"></h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+<g:if test="${command?.id}">
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Disponibilidad*</label>
+		<div class="col-sm-9">
+			<div class="dt-responsive table-responsive">
+				<table id="listDisponibilidades" class="table table-striped table-bordered nowrap compact" style="cursor: pointer; margin: 0px !important;">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Dia</th>
+							<th>Desde</th>
+							<th>Hasta</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
-			<div class="modal-body" style="padding: 0px">
-				<g:hiddenField id="rowIndex" name="rowIndex"/>
-				<g:hiddenField id="disponibilidadId" name="disponibilidadId"/>
-				<div class="card-block">
-					<div class="form-group row" style="margin-bottom: 10px;">
-						<label class="col-sm-2 col-form-label">Dia</label>
-						<div class="col-sm-10">
-							<select id="cbDias" class="form-control" name="dia" style="border-color: #084c61; color: #084c61;"></select>
+		</div>
+		<div class="col-sm-1">
+			<button id="btnAddDisponibilidad" type="button" class="form-control btn btn-primary" onclick="showModalDisponibilidad()">
+				<i class="icofont icofont-ui-add"></i>
+			</button>
+		</div>
+	</div> 
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Campos obligatorios*</label>
+	</div>
+	<div class="modal fade" id="modalAgregarDisponibilidad" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg modal-dialog-center" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="tituloModal"></h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="padding: 0px">
+					<g:hiddenField id="rowIndex" name="rowIndex"/>
+					<g:hiddenField id="disponibilidadId" name="disponibilidadId"/>
+					<div class="card-block">
+						<div class="form-group row" style="margin-bottom: 10px;">
+							<label class="col-sm-2 col-form-label">Dia</label>
+							<div class="col-sm-10">
+								<select id="cbDias" class="form-control" name="dia" style="border-color: #084c61; color: #084c61;"></select>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row" style="margin-bottom: 10px;">
-						<label class="col-sm-2 col-form-label">Desde</label>
-						<div class="col-sm-10">
-							<input id="desde" name="desde" placeholder="hh:mm" class="form-control-primary form-control" style="align-self: left;"></input>
+						<div class="form-group row" style="margin-bottom: 10px;">
+							<label class="col-sm-2 col-form-label">Desde</label>
+							<div class="col-sm-10">
+								<input id="desde" name="desde" placeholder="hh:mm" class="form-control-primary form-control" style="align-self: left;"></input>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row" style="margin-bottom: 10px;">
-						<label class="col-sm-2 col-form-label">Hasta</label>
-						<div class="col-sm-10">
-							<input id="hasta" name="hasta" placeholder="hh:mm" class="form-control-primary form-control" style="align-self: left;"></input>
+						<div class="form-group row" style="margin-bottom: 10px;">
+							<label class="col-sm-2 col-form-label">Hasta</label>
+							<div class="col-sm-10">
+								<input id="hasta" name="hasta" placeholder="hh:mm" class="form-control-primary form-control" style="align-self: left;"></input>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer d-flex justify-content-start">
-				<button id="buttonBorrar" type="button" class="btn btn-primary "
-				onclick="borrarDisponibilidad()">Borrar</button>
-				<button id="buttonActualizar" type="button" class="btn btn-success "
-				onclick="actualizarDisponibilidad()">Guardar</button>
-				<button id="buttonCrear" type="button" class="btn btn-success "
-				onclick="agregarDisponibilidad()">Guardar</button>
-				<button id="buttonLocalVolver" type="button" class="btn btn-volver" data-dismiss="modal">
-					Volver</button>
+				<div class="modal-footer d-flex justify-content-start">
+					<button id="buttonBorrar" type="button" class="btn btn-primary "
+					onclick="borrarDisponibilidad()">Borrar</button>
+					<button id="buttonActualizar" type="button" class="btn btn-success "
+					onclick="actualizarDisponibilidad()">Guardar</button>
+					<button id="buttonCrear" type="button" class="btn btn-success "
+					onclick="agregarDisponibilidad()">Guardar</button>
+					<button id="buttonLocalVolver" type="button" class="btn btn-volver" data-dismiss="modal">
+						Volver</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</g:if>
 <script>
 		var dias = [
 			{
@@ -225,7 +231,7 @@
 
 		llenarDatoslistDisponibilidades()
 
-		$('#loaderGrande').fadeOut('slow', function() {
+		$('#loaderGeneral').fadeOut('slow', function() {
 			$(this).hide();
 		});
 		$("#cbTipoCurso").select2({
@@ -394,47 +400,191 @@
 		});
 	}
 
-	function agregarDisponibilidad(){
-		if ($('#cbDias').val() && $('#desde').val() && $('#hasta').val()){
+	function agregarDisponibilidad() {
+		if ($('#cbDias').val() && $('#desde').val() && $('#hasta').val()) {
+			// Mostrar el Swal de carga
+			Swal.fire({
+				title: 'Cargando...',
+				text: 'Por favor, espera mientras se procesa tu solicitud.',
+				icon: 'info',
+				showConfirmButton: false,
+				allowOutsideClick: false,
+				didOpen: () => {
+					Swal.showLoading();
+				}
+			});
+
 			$('#modalAgregarDisponibilidad').modal('hide');
-			tablaDisponibilidades.row.add({
-				id: '',
-				dia: $('#cbDias').val(),
-				desde: $('#desde').val(),
-				hasta: $('#hasta').val()
-			}).draw()
-			$("#disponibilidades").val(JSON.stringify($('#listDisponibilidades').dataTable().fnGetData()))
-			limpiarModal()
-		}else{
+
+			$.ajax("${createLink(controller:'disponibilidad', action: 'ajaxSaveDisponibilidad')}", {
+				dataType: "json",
+				data: {
+					dia: $('#cbDias').val(),
+					desde: $('#desde').val(),
+					hasta: $('#hasta').val(),
+					personaId: "${command?.id}",
+					esDocente: true
+				}
+			}).done(function(data) {
+				llenarDatoslistDisponibilidades();
+				limpiarModal();
+
+				Swal.fire({
+					title: 'Éxito',
+					text: "La disponibilidad se ha agregado correctamente.",
+					icon: 'success',
+					confirmButtonText: 'Aceptar',
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						container: "swal-z-index"
+					}
+				});
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				Swal.fire({
+					title: 'Error',
+					text: "Hubo un problema al agregar la disponibilidad.",
+					icon: 'error',
+					confirmButtonText: 'Aceptar',
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						container: "swal-z-index"
+					}
+				});
+			});
+		} else {
 			Swal.fire({
 				title: 'Error',
 				text: "No has completado todos los datos.",
 				icon: "error",
 				confirmButtonText: 'Aceptar',
 				customClass: {
-					confirmButton: 'btn btn-primary ',
+					confirmButton: 'btn btn-primary',
 					container: "swal-z-index"
 				}
-			})
+			});
 		}
 	}
 
 	function borrarDisponibilidad(){
+		Swal.fire({
+			title: 'Cargando...',
+			text: 'Por favor, espera mientras se procesa tu solicitud.',
+			icon: 'info',
+			showConfirmButton: false,
+			allowOutsideClick: false,
+			didOpen: () => {
+				Swal.showLoading();
+			}
+		});
+
+		// Ocultar el modal
 		$('#modalAgregarDisponibilidad').modal('hide');
-		var index = $("#rowIndex").val()
-		tablaDisponibilidades.row(index).remove().draw()
-		$("#disponibilidades").val(JSON.stringify($('#listDisponibilidades').dataTable().fnGetData()))
+
+		// Realizar la llamada AJAX
+		$.ajax("${createLink(controller:'disponibilidad', action: 'ajaxDeleteDisponibilidad')}", {
+			dataType: "json",
+			data: {
+				id: $('#disponibilidadId').val(),
+			}
+		}).done(function(data) {
+			// Llenar la lista de disponibilidades y limpiar el modal
+			llenarDatoslistDisponibilidades();
+			limpiarModal();
+
+			// Mostrar mensaje de confirmación al finalizar el AJAX
+			Swal.fire({
+				title: 'Éxito',
+				text: "La disponibilidad se ha borrado correctamente.",
+				icon: 'success',
+				confirmButtonText: 'Aceptar',
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					container: "swal-z-index"
+				}
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			// Manejar errores de la llamada AJAX
+			Swal.fire({
+				title: 'Error',
+				text: "Hubo un problema al borrar la disponibilidad.",
+				icon: 'error',
+				confirmButtonText: 'Aceptar',
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					container: "swal-z-index"
+				}
+			});
+		});
 	}
 
 	function actualizarDisponibilidad(){
-		$('#modalAgregarDisponibilidad').modal('hide');
-		var index = $("#rowIndex").val()
-		tablaDisponibilidades.row(index).data({
-			"id": $('#disponibilidadId').val(),
-			"dia": $('#cbDias').val(),
-			"desde": $('#desde').val(),
-			"hasta": $('#hasta').val()
-		}).draw()
-		$("#disponibilidades").val(JSON.stringify($('#listDisponibilidades').dataTable().fnGetData()))
+		if ($('#cbDias').val() && $('#desde').val() && $('#hasta').val()) {
+			// Mostrar el Swal de carga
+			Swal.fire({
+				title: 'Cargando...',
+				text: 'Por favor, espera mientras se procesa tu solicitud.',
+				icon: 'info',
+				showConfirmButton: false,
+				allowOutsideClick: false,
+				didOpen: () => {
+					Swal.showLoading();
+				}
+			});
+
+			// Ocultar el modal
+			$('#modalAgregarDisponibilidad').modal('hide');
+
+			// Realizar la llamada AJAX
+			$.ajax("${createLink(controller:'disponibilidad', action: 'ajaxUpdateDisponibilidad')}", {
+				dataType: "json",
+				data: {
+					id: $('#disponibilidadId').val(),
+					dia: $('#cbDias').val(),
+					desde: $('#desde').val(),
+					hasta: $('#hasta').val(),
+					esDocente: true
+				}
+			}).done(function(data) {
+				// Llenar la lista de disponibilidades y limpiar el modal
+				llenarDatoslistDisponibilidades();
+				limpiarModal();
+
+				// Mostrar mensaje de confirmación al finalizar el AJAX
+				Swal.fire({
+					title: 'Éxito',
+					text: "La disponibilidad se ha actualizado correctamente.",
+					icon: 'success',
+					confirmButtonText: 'Aceptar',
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						container: "swal-z-index"
+					}
+				});
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				// Manejar errores de la llamada AJAX
+				Swal.fire({
+					title: 'Error',
+					text: "Hubo un problema al actualizar la disponibilidad.",
+					icon: 'error',
+					confirmButtonText: 'Aceptar',
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						container: "swal-z-index"
+					}
+				});
+			});
+		} else {
+			// Mostrar mensaje de error si los campos están vacíos
+			Swal.fire({
+				title: 'Error',
+				text: "No has completado todos los datos.",
+				icon: "error",
+				confirmButtonText: 'Aceptar',
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					container: "swal-z-index"
+				}
+			});
+		}
 	}
 </script>

@@ -16,9 +16,6 @@ import org.hibernate.transform.Transformers
 @Transactional
 class ClaseService {
 	def sessionFactory
-	def listClases() {
-		return Clase.list()
-	}
 
 	def getClaseCommand(Long id){
 		Clase claseInstance = Clase.get(id)
@@ -77,7 +74,7 @@ class ClaseService {
 		return claseInstance.save(flush: true, failOnError: true)
 	}
 
-	def listClasesByDocente() {
+	def listClases() {
 		def query = """
 			SELECT 
 				clase.id AS "claseId",
@@ -105,6 +102,32 @@ class ClaseService {
 			LEFT JOIN clase_alumno ON clase.id = clase_alumno.clase_alumno_id
 			LEFT JOIN alumno ON clase_alumno.alumno_id = alumno.id
 			GROUP BY clase.id, clase.fecha, clase.inicio, clase.fin, estado.nombre, idioma.id, idioma.nombre, idioma.nivel, docente.id, alumno.id, alumno.apellido, alumno.nombre;
+		"""
+		def clases = sessionFactory.currentSession.createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(LinkedHashMap)).list()
+		return clases
+	}
+
+	def listClasesByDocente(Long docenteId) {
+		def query = """
+			SELECT 
+				clase.id AS "claseId",
+				clase.fecha,
+				concat(
+					(clase.fecha || 'T' || clase.inicio)
+				) AS "fechaInicio",
+				concat(
+					(clase.fecha || 'T' || clase.fin)
+				) AS "fechaFin",
+				clase.inicio,
+				clase.fin,
+				idioma.nombre AS "idiomaNombre",
+				idioma.nivel,
+				docente.id AS "docenteId"
+			FROM clase 
+			LEFT JOIN empleado docente ON clase.docente_id = docente.id
+			LEFT JOIN idioma ON clase.idioma_id = idioma.id
+			where docente.id = ${docenteId}
+			GROUP BY clase.id, docente.id, idioma.nombre, idioma.nivel;
 		"""
 		def clases = sessionFactory.currentSession.createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(LinkedHashMap)).list()
 		return clases

@@ -94,6 +94,7 @@
 </div>
 <script>
 	$(document).ready(function () {
+
 		$("#cbIdiomas").select2({
 			placeholder: 'Seleccione un idioma',
 			formatNoMatches: function() {
@@ -216,7 +217,7 @@
 
 		llenarDatoslistAlumnos()
 
-		$('#loaderGrande').fadeOut('slow', function() {
+		$('#loaderGeneral').fadeOut('slow', function() {
 			$(this).hide();
 		});
 
@@ -280,10 +281,11 @@
 							fecha: fecha,
 							inicio: inicio,
 							fin: fin,
-							idiomaId: idiomaId
+							idiomaId: idiomaId,
+							claseId: '${command?.id}'
 						},
 				identificador: "id",
-				idDefault: null,
+				idDefault: '${command?.docenteId}',
 				atributo: "nombreCompleto"
 			});
 		}
@@ -297,7 +299,8 @@
 				fecha: $('#fecha').val(),
 				inicio: $('#inicio').val(),
 				fin: $('#fin').val(),
-				idiomaId: $('#cbIdiomas').val()
+				idiomaId: $('#cbIdiomas').val(),
+				claseId: '${command?.id}'
 			}
 		}).done(function(data) {
 			llenarCombo({
@@ -316,7 +319,7 @@
 		$.ajax("${createLink(controller:'clase', action: 'ajaxGetAlumnosByClase')}", {
 			dataType: "json",
 			data: {
-				claseId: '${command?.id}'
+				claseId: '${command?.id}',
 			}
 		}).done(function(data) {
 			tablaAlumnos.rows.add(data).draw()

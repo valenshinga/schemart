@@ -68,13 +68,6 @@ class AlumnoService {
 		
 		alumnoInstance = alumnoInstance.save(flush: true, failOnError: true)
 
-
-		def disponibilidadesList = disponibilidades ? new JsonSlurper().parseText(disponibilidades) : []
-		disponibilidadesList.each { disponibilidad ->
-			def disponibilidadGuardada = disponibilidadService.saveDisponibilidad(disponibilidad)
-			alumnoInstance.addToDisponibilidad(disponibilidadGuardada)
-		}
-
 		command.idiomas.each { id ->
 			alumnoInstance.addToIdiomas(Idioma.get(id))
 		}
@@ -85,34 +78,6 @@ class AlumnoService {
 
 	def updateAlumno(AlumnoCommand command, String disponibilidades = null) {
 		Alumno alumnoInstance = Alumno.get(command.id)
-        def disponibilidadesList = new JsonSlurper().parseText(disponibilidades)
-		def disponibilidadesRecibidasConId = disponibilidadesList.findAll { it.id != null }*.id
-
-		def disponibilidadesAEliminar = []
-		alumnoInstance.disponibilidad.each { disponibilidad ->
-			if (!disponibilidadesRecibidasConId.contains(disponibilidad.id.toInteger())){
-				disponibilidadesAEliminar << disponibilidad
-			}
-		}
-
-		if (disponibilidadesAEliminar) {
-			disponibilidadesAEliminar.each { disponibilidad ->
-				alumnoInstance.removeFromDisponibilidad(disponibilidad)
-				disponibilidadService.deleteDisponibilidad(disponibilidad.id)
-			}
-		}
-
-		disponibilidadesList.each { disponibilidadData ->
-			if (disponibilidadData.id) {
-				def disponibilidadExistente = disponibilidadService.updateDisponibilidad(disponibilidadData)
-				if (!alumnoInstance.disponibilidad.contains(disponibilidadExistente)) {
-					alumnoInstance.addToDisponibilidad(disponibilidadExistente)
-				}
-			} else {
-				def disponibilidadGuardada = disponibilidadService.saveDisponibilidad(disponibilidadData)
-				alumnoInstance.addToDisponibilidad(disponibilidadGuardada)
-			}
-		}
 
 		command.idiomas.each{ id ->
 			def idioma = Idioma.get(id)
@@ -150,12 +115,13 @@ class AlumnoService {
 	// 	return Alumno.findAllByClase(Clase.get(claseId))
 	// }
 
-	def listAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId){
+	def listAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId, Long claseId = null){
 		String desde = new LocalTime(inicio)
 		String hasta = new LocalTime(fin)
 
 		def formato = DateTimeFormat.forPattern("dd-MM-yyyy")
-		String dia = LocalDate.parse(fecha, formato).dayOfWeek().getAsText(new Locale("es")).capitalize()
+		def fechaFormateada = LocalDate.parse(fecha, formato) 
+		String dia = fechaFormateada.dayOfWeek().getAsText(new Locale("es")).capitalize()
 		Idioma idioma = Idioma.get(idiomaId)
 		def query = """
 			SELECT alumno.id, 
@@ -169,11 +135,20 @@ class AlumnoService {
 				ON alumno_idioma.idioma_id = idioma.id
 				JOIN disponibilidad 
 				ON disponibilidad.alumno_id = alumno.id
+				LEFT JOIN clase_alumno 
+				ON clase_alumno.alumno_id = alumno.id 
+				LEFT JOIN clase 
+				ON clase.id = clase_alumno.clase_alumno_id
+					AND clase.fecha = '${fechaFormateada}' 
+					AND (
+						(clase.inicio < '${hasta}' AND clase.fin > '${desde}')
+					)
 				WHERE disponibilidad.desde <= '${desde}'
 					AND disponibilidad.hasta >= '${hasta}'
 					AND disponibilidad.dia = '${dia}'
 					AND idioma.nombre = '${idioma.nombre}'
 					AND idioma.nivel = '${idioma.nivel}'
+					AND (clase.id IS NULL or clase.id = ${claseId}) 
 				GROUP BY alumno.id
 				;
 		"""

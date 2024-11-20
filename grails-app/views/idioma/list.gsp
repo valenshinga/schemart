@@ -156,7 +156,7 @@
 
 			llenarDatoslistIdiomas()
 	
-			$('#loaderGrande').fadeOut('slow', function() {
+			$('#loaderGeneral').fadeOut('slow', function() {
 				$(this).hide();
 			});
 		});

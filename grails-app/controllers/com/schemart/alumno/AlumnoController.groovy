@@ -76,8 +76,8 @@ class AlumnoController {
 		render alumnoService.listTiposCursos() as JSON
 	}
 
-	def ajaxGetAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId){
-		def alumnos = alumnoService.listAlumnosDisponibles(fecha, inicio, fin, idiomaId)
+	def ajaxGetAlumnosDisponibles(String fecha, String inicio, String fin, Long idiomaId, Long claseId){
+		def alumnos = alumnoService.listAlumnosDisponibles(fecha, inicio, fin, idiomaId, claseId)
 		render alumnos as JSON
 	}
 

@@ -152,7 +152,7 @@
 
 			llenarDatoslistEmpleados()
 	
-			$('#loaderGrande').fadeOut('slow', function() {
+			$('#loaderGeneral').fadeOut('slow', function() {
 				$(this).hide();
 			});
 		});

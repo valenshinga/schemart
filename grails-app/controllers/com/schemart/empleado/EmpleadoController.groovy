@@ -72,8 +72,17 @@ class EmpleadoController {
 		render empleadoService.listEmpleados() as JSON
 	}
 	
-	def ajaxGetDocentesDisponibles(String fecha, String inicio, String fin, Long idiomaId){
-		def docentes = empleadoService.listDocentesDisponibles(fecha, inicio, fin, idiomaId)
+	def ajaxGetDocentes(){
+		def docentes = empleadoService.listDocentes()
+		docentes.add([
+			id: 0,
+			nombreApellido: 'Todos'
+		])
+		render docentes as JSON
+	}
+
+	def ajaxGetDocentesDisponibles(String fecha, String inicio, String fin, Long idiomaId, Long claseId){
+		def docentes = empleadoService.listDocentesDisponibles(fecha, inicio, fin, idiomaId, claseId)
 		render docentes as JSON
 	}
 }

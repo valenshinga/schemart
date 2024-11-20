@@ -20,4 +20,19 @@ class DisponibilidadController {
 			salida = disponibilidadService.listDisponibilidadesDocente(id)
 		render salida as JSON
 	}
+
+	def ajaxSaveDisponibilidad(String desde, String hasta, String dia, Long personaId, Boolean esDocente){
+		render disponibilidadService.saveDisponibilidad(desde,hasta,dia,personaId,esDocente) as JSON
+	}
+
+	def ajaxUpdateDisponibilidad(Long id, String desde, String hasta, String dia, Boolean esDocente){
+		render disponibilidadService.updateDisponibilidad(id,desde,hasta,dia,esDocente) as JSON
+	}
+
+	def ajaxDeleteDisponibilidad(Long id){
+		disponibilidadService.deleteDisponibilidad(id)
+		def salida = [:]
+		salida.mensaje = 'ok'
+		render salida as JSON
+	}
 }
