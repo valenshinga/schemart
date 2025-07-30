@@ -77,11 +77,11 @@ class Inicializacion {
 	private static void inicializarUsuarios() {
 		println "Inicializando usuarios"
 		def usuarios = [
-			["username": "valentinshingaki@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			["username": "valentinshingaki@gmail.com", "password": "schemart123", "nombre": "Programadores","enabled": true, "accountExpired": false,
 			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_SUPER_ADMIN')]],
-			["username": "testeradmin@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			["username": "testeradmin@gmail.com", "password": "schemart123", "nombre": "Programadores","enabled": true, "accountExpired": false,
 			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_ADMIN')]],
-			["username": "testeruser@gmail.com", "password": "schemart123", "nombre": "Programadores Huergo","enabled": true, "accountExpired": false,
+			["username": "testeruser@gmail.com", "password": "schemart123", "nombre": "Programadores","enabled": true, "accountExpired": false,
 			 "accountLocked": false, "passwordExpired": false, "roles": [Role.findByAuthority('ROLE_USER')]]
 		]
 		usuarios.each { usuario ->
