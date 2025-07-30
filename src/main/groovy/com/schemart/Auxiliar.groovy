@@ -11,7 +11,7 @@ import org.joda.time.LocalDateTime
 import grails.core.DefaultGrailsApplication
 class Auxiliar {
 	// No tocar el de abajo
-	public static final boolean testingEnviromentAlternativo = grails.util.Environment.isDevelopmentMode() // No switchear, esto lo usamos para consultar si disparamos crones, facturas o emails. No debe utilizarse en testing.
+	public static final boolean testingEnviromentAlternativo = grails.util.Environment.isDevelopmentMode() // No switchear
 	// No tocar el de arriba
 	// Este sí:
 	public static final boolean testingEnviroment = testingEnviromentAlternativo // Este es el que switcheamos para testear cosas.
@@ -145,10 +145,6 @@ class Auxiliar {
 			return "  ${it.key.padRight(maxKeyLength)} : ${valor}"
 		}.join('\n')
 		separador()
-	}
-
-	public static String getTelefonoVentas(){
-		return "5491162230023" //telefono ventas
 	}
 
 	public static String corregirTelefono(String telefono){
